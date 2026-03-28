@@ -32,7 +32,6 @@ export async function onRequestPost(context) {
       sizer_type,
       inputs,
       final_size,
-      decided_at: new Date().toISOString(),
     }),
   });
 
