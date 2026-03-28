@@ -1,6 +1,10 @@
 export async function onRequestPost(context) {
   const { SUPABASE_URL, SUPABASE_KEY } = context.env;
 
+  if (!SUPABASE_URL || !SUPABASE_KEY) {
+    return json({ error: 'Supabase credentials not configured' }, 500);
+  }
+
   let body;
   try {
     body = await context.request.json();
@@ -8,13 +12,11 @@ export async function onRequestPost(context) {
     return json({ error: 'Invalid JSON' }, 400);
   }
 
+  // Fields sent by both long and short sizers:
+  // { ticker, sizer_type, inputs: { loss, gain, skew?, time, conv?, beta, crowd?, vol, liq, squeeze?, N }, final_size }
   const { ticker, sizer_type, inputs, final_size } = body;
   if (!ticker || !sizer_type) {
     return json({ error: 'ticker and sizer_type are required' }, 400);
-  }
-
-  if (!SUPABASE_URL || !SUPABASE_KEY) {
-    return json({ error: 'Supabase credentials not configured' }, 500);
   }
 
   const resp = await fetch(`${SUPABASE_URL}/rest/v1/sizing_decisions`, {
