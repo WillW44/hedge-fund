@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consumer Alpha Advisors</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #ffffff; --bg-secondary: #f5f5f4; --bg-tertiary: #efede8;
+    --text: #1a1a18; --text-secondary: #5f5e5a; --text-tertiary: #888780;
+    --border: rgba(0,0,0,0.12); --border-secondary: rgba(0,0,0,0.22);
+    --radius-md: 8px; --radius-lg: 12px;
+    --green-bg: #EAF3DE; --green-border: #3B6D11; --green-text: #27500A;
+    --amber-bg: #FAEEDA; --amber-border: #BA7517; --amber-text: #633806;
+    --red-bg: #FCEBEB; --red-border: #A32D2D; --red-text: #791F1F;
+    --blue-bg: #E6F1FB; --blue-border: #185FA5; --blue-text: #0C447C;
+    --purple-bg: #EEEDFE; --purple-border: #534AB7; --purple-text: #3C3489;
+    --teal-bg: #E1F5EE; --teal-border: #0F6E56; --teal-text: #085041;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1a; --bg-secondary: #252523; --bg-tertiary: #2c2c2a;
+      --text: #f0ede8; --text-secondary: #b4b2a9; --text-tertiary: #888780;
+      --border: rgba(255,255,255,0.12); --border-secondary: rgba(255,255,255,0.22);
+      --green-bg: #173404; --green-border: #3B6D11; --green-text: #C0DD97;
+      --amber-bg: #412402; --amber-border: #BA7517; --amber-text: #FAC775;
+      --red-bg: #501313; --red-border: #A32D2D; --red-text: #F7C1C1;
+      --blue-bg: #042C53; --blue-border: #185FA5; --blue-text: #B5D4F4;
+      --purple-bg: #26215C; --purple-border: #534AB7; --purple-text: #CECBF6;
+      --teal-bg: #04342C; --teal-border: #0F6E56; --teal-text: #9FE1CB;
+    }
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: #1a1a18; display: flex; align-items: stretch;
+    padding: 0 1.5rem; position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-brand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15px; font-weight: 400; color: #f0ede8;
+    display: flex; align-items: center;
+    padding: 0 20px 0 0; margin-right: 8px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-tab {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px; color: rgba(255,255,255,0.5);
+    padding: 14px 14px; text-decoration: none;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.15s;
+  }
+  .nav-tab:hover { color: rgba(255,255,255,0.8); }
+  .nav-tab.active { color: #fff; border-bottom-color: #639922; }
+
+  /* ── BODY / PAGE ── */
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg-tertiary); color: var(--text);
+    min-height: 100vh;
+  }
+  .page { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; }
+
+  /* ── TICKER ROW ── */
+  .ticker-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .ticker-input {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 14px; padding: 8px 12px;
+    border: 0.5px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    background: var(--bg); color: var(--text);
+    width: 180px; outline: none;
+  }
+  .ticker-input:focus { border-color: #639922; }
+  .save-btn {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13px; padding: 8px 16px;
+    background: #1a1a18; color: #f0ede8;
+    border: none; border-radius: var(--radius-md);
+    cursor: pointer; transition: background 0.15s;
+  }
+  .save-btn:hover { background: #333330; }
+  .save-msg { font-family: Georgia, 'Times New Roman', serif; font-size: 13px; }
+
+  /* ── SHARED LAYOUT ── */
+  header { margin-bottom: 2rem; }
+  header h1 { font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: 4px; }
+  header p { font-size: 13px; color: var(--text-tertiary); }
+
+  .section-label {
+    font-size: 11px; font-weight: 500; color: var(--text-secondary);
+    text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px;
+  }
+  .divider { border: none; border-top: 0.5px solid var(--border); margin: 20px 0; }
+
+  .grid-2  { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; margin-bottom: 16px; }
+  .grid-3  { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; margin-bottom: 16px; }
+  .grid-4  { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 16px; }
+  .grid-3t { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px;  margin-bottom: 16px; }
+
+  @media (max-width: 640px) {
+    .grid-2, .grid-3, .grid-4, .grid-3t { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--bg); border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg); padding: 1rem 1.25rem;
+  }
+  .card-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 4px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; }
+  .card-sub   { font-size: 11px; color: var(--text-tertiary); margin-bottom: 10px; line-height: 1.4; }
+
+  .opt {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 10px; border-radius: var(--radius-md);
+    border: 0.5px solid var(--border); cursor: pointer;
+    font-size: 13px; color: var(--text); margin-bottom: 6px;
+    transition: background 0.1s; user-select: none;
+  }
+  .opt:last-child { margin-bottom: 0; }
+  .opt:hover  { background: var(--bg-secondary); }
+  .opt-sz { font-size: 11px; color: var(--text-tertiary); white-space: nowrap; margin-left: 8px; }
+
+  .opt.sel-loss { background: var(--red-bg);    border-color: var(--red-border);    color: var(--red-text); }
+  .opt.sel-loss .opt-sz  { color: var(--red-border); }
+  .opt.sel-gain { background: var(--green-bg);  border-color: var(--green-border);  color: var(--green-text); }
+  .opt.sel-gain .opt-sz  { color: var(--green-border); }
+  .opt.sel-time { background: var(--blue-bg);   border-color: var(--blue-border);   color: var(--blue-text); }
+  .opt.sel-time .opt-sz  { color: var(--blue-border); }
+  .opt.sel-mod  { background: var(--purple-bg); border-color: var(--purple-border); color: var(--purple-text); }
+  .opt.sel-mod .opt-sz   { color: var(--purple-border); }
+  .opt.sel-skew { background: var(--teal-bg);   border-color: var(--teal-border);   color: var(--teal-text); }
+  .opt.sel-skew .opt-sz  { color: var(--teal-border); }
+
+  .tier-card  { border-radius: var(--radius-md); padding: 10px 12px; border: 0.5px solid var(--border); }
+  .tier-label { font-size: 11px; font-weight: 500; margin-bottom: 4px; }
+  .tier-size  { font-size: 22px; font-weight: 500; }
+  .tier-sub   { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+  .metric       { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 12px 14px; }
+  .metric-label { font-size: 11px; color: var(--text-secondary); margin-bottom: 6px; }
+  .metric-val   { font-size: 22px; font-weight: 500; color: var(--text); }
+  .metric-sub   { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+  .c-good   { color: var(--green-text); }
+  .c-ok     { color: var(--amber-text); }
+  .c-bad    { color: var(--red-text); }
+  .c-purple { color: var(--purple-text); }
+  .c-teal   { color: var(--teal-text); }
+
+  .bar-wrap  { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; margin: 4px 0 12px; }
+  .bar-fill  { height: 100%; border-radius: 4px; transition: width .25s, background .25s; }
+
+  .mod-row      { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .mod-name     { font-size: 12px; color: var(--text-secondary); min-width: 160px; }
+  .mod-score    { font-size: 13px; font-weight: 500; min-width: 50px; text-align: right; }
+  .mod-bar-wrap { flex: 1; height: 5px; background: var(--bg-secondary); border-radius: 3px; overflow: hidden; }
+  .mod-bar      { height: 100%; border-radius: 3px; transition: width .2s, background .2s; }
+
+  .band-vis {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 16px;
+    padding: 10px 14px; background: var(--bg-secondary); border-radius: var(--radius-md);
+  }
+  .band-track {
+    flex: 1; height: 10px; background: var(--bg); border-radius: 5px;
+    border: 0.5px solid var(--border); position: relative;
+  }
+  .band-fill   { position: absolute; height: 100%; border-radius: 5px; transition: left .25s, width .25s; }
+  .band-marker {
+    position: absolute; width: 3px; height: 16px; top: -3px;
+    border-radius: 2px; transition: left .25s; background: var(--text);
+  }
+
+  .note-box  { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-top: 4px; }
+  .note-head { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .note-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  .top-bar  { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; align-items: center; }
+  .top-stat { font-size: 12px; color: var(--text-tertiary); }
+  .top-stat strong { color: var(--text); font-weight: 500; }
+
+  input[type=range] {
+    -webkit-appearance: none; appearance: none;
+    height: 4px; background: var(--border-secondary);
+    border-radius: 2px; outline: none; cursor: pointer; width: 90px;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 16px; height: 16px;
+    border-radius: 50%; background: var(--text); cursor: pointer;
+  }
+  .bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-tertiary); margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-brand">Consumer Alpha Advisors</span>
+  <a href="#long"  class="nav-tab active">Long Sizer</a>
+  <a href="#short" class="nav-tab">Short Sizer</a>
+</nav>
+
+<div class="page">
+
+<!-- ═══════════════════════════════════════════════════════════
+     LONG SIZER
+═══════════════════════════════════════════════════════════ -->
+<div id="long-section">
+
+  <div class="ticker-row">
+    <input type="text" id="l-ticker" class="ticker-input" placeholder="Ticker (e.g. AAPL)">
+    <button class="save-btn" onclick="lSaveDecision()">Save Decision</button>
+    <span id="l-save-msg" class="save-msg"></span>
+  </div>
+
+  <header>
+    <h1>Long position sizer</h1>
+    <p>Kelly-based sizing with downside band, skew, timing, and risk modifiers — 50% win rate, 2.0x R/R baseline, 60% target exposure</p>
+  </header>
+
+  <div class="top-bar">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="top-stat">Names in book</span>
+      <input type="range" min="10" max="15" step="1" value="12" id="l-nn" oninput="lUpdN(this.value)">
+      <span style="font-size:13px;font-weight:500;color:var(--text);min-width:20px;" id="l-nn-v">12</span>
+    </div>
+    <span class="top-stat">Exposure: <strong>60%</strong></span>
+    <span class="top-stat">Win rate: <strong>50%</strong></span>
+    <span class="top-stat">Hard cap: <strong>10%</strong></span>
+    <span class="top-stat">Avg position: <strong id="l-ap">5.0%</strong></span>
+  </div>
+
+  <div class="grid-3t">
+    <div class="tier-card" style="background:var(--green-bg);border-color:var(--green-border);">
+      <div class="tier-label" style="color:var(--green-text);">Best case</div>
+      <div class="tier-size c-good" id="l-th">6.3%</div>
+      <div class="tier-sub">tight ds + near catalyst + high conv</div>
+    </div>
+    <div class="tier-card" style="background:var(--amber-bg);border-color:var(--amber-border);">
+      <div class="tier-label" style="color:var(--amber-text);">Base case</div>
+      <div class="tier-size c-ok" id="l-tm">0.6%</div>
+      <div class="tier-sub">avg inputs + medium conviction</div>
+    </div>
+    <div class="tier-card" style="background:var(--red-bg);border-color:var(--red-border);">
+      <div class="tier-label" style="color:var(--red-text);">Worst case</div>
+      <div class="tier-size c-bad" id="l-tl">0.3%</div>
+      <div class="tier-sub">wide ds + distant catalyst + low conv</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 1 — band setters</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Downside risk</div>
+      <div class="card-sub">Primary band setter — limits maximum holdable position size regardless of R/R</div>
+      <div class="opt sel-skew" data-g="l-loss" data-v="10" onclick="lPick(this,'l-loss')"><span>−10% downside</span><span class="opt-sz" id="l-lk-10">3.5%</span></div>
+      <div class="opt"         data-g="l-loss" data-v="20" onclick="lPick(this,'l-loss')"><span>−20% downside</span><span class="opt-sz" id="l-lk-20">1.1%</span></div>
+      <div class="opt"         data-g="l-loss" data-v="30" onclick="lPick(this,'l-loss')"><span>−30% downside</span><span class="opt-sz" id="l-lk-30">0.7%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Catalyst timing</div>
+      <div class="card-sub">Closer catalyst = larger position now — imminent payoff reduces carry risk</div>
+      <div class="opt sel-time" data-g="l-time" data-v="1.0" onclick="lPick(this,'l-time')"><span>3 months</span><span class="opt-sz" id="l-tk-3m">3.5%</span></div>
+      <div class="opt"          data-g="l-time" data-v="0.8" onclick="lPick(this,'l-time')"><span>6 months</span><span class="opt-sz" id="l-tk-6m">2.8%</span></div>
+      <div class="opt"          data-g="l-time" data-v="0.6" onclick="lPick(this,'l-time')"><span>9 months</span><span class="opt-sz" id="l-tk-9m">2.1%</span></div>
+    </div>
+  </div>
+
+  <div class="band-vis">
+    <span style="font-size:11px;color:var(--text-tertiary);min-width:30px;">0%</span>
+    <div class="band-track" id="l-band-track">
+      <div class="band-fill"   id="l-band-fill"   style="opacity:0.35;left:15%;width:35%;background:rgb(99,153,34);"></div>
+      <div class="band-marker" id="l-band-marker" style="left:calc(35% - 1.5px);"></div>
+    </div>
+    <span style="font-size:11px;color:var(--text-tertiary);min-width:30px;text-align:right;">10%</span>
+    <span style="font-size:12px;font-weight:500;color:var(--text);min-width:120px;text-align:right;" id="l-band-label">band: 1.5% – 5.0%</span>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 2 — Kelly inputs</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Expected case</div>
+      <div class="card-sub">Base gain if thesis plays out — primary driver of Kelly fraction and position size</div>
+      <div class="opt"         data-g="l-gain" data-v="30" onclick="lPick(this,'l-gain')"><span>+30% target</span><span class="opt-sz" id="l-gk-30">2.1%</span></div>
+      <div class="opt sel-gain" data-g="l-gain" data-v="50" onclick="lPick(this,'l-gain')"><span>+50% target</span><span class="opt-sz" id="l-gk-50">3.5%</span></div>
+      <div class="opt"         data-g="l-gain" data-v="75" onclick="lPick(this,'l-gain')"><span>+75% target</span><span class="opt-sz" id="l-gk-75">4.4%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Skew</div>
+      <div class="card-sub">Upside/downside ratio — tail optionality that boosts effective Kelly R/R</div>
+      <div class="opt"          data-g="l-skew" data-v="2" onclick="lPick(this,'l-skew')"><span>2:1 skew</span><span class="opt-sz" id="l-sk-2">3.2%</span></div>
+      <div class="opt"          data-g="l-skew" data-v="3" onclick="lPick(this,'l-skew')"><span>3:1 skew</span><span class="opt-sz" id="l-sk-3">3.3%</span></div>
+      <div class="opt sel-skew" data-g="l-skew" data-v="4" onclick="lPick(this,'l-skew')"><span>4:1 skew</span><span class="opt-sz" id="l-sk-4">3.5%</span></div>
+      <div class="opt"          data-g="l-skew" data-v="5" onclick="lPick(this,'l-skew')"><span>5:1 skew</span><span class="opt-sz" id="l-sk-5">3.7%</span></div>
+      <div class="opt"          data-g="l-skew" data-v="6" onclick="lPick(this,'l-skew')"><span>6:1 skew</span><span class="opt-sz" id="l-sk-6">3.8%</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 3 — modifiers</div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">Conviction</div>
+      <div class="card-sub">Only modifier that can push above 1× — up to 1.25× for highest conviction</div>
+      <div class="opt"         data-g="l-conv" data-v="0.70" onclick="lPick(this,'l-conv')"><span>Low</span><span class="opt-sz">0.70×</span></div>
+      <div class="opt sel-mod" data-g="l-conv" data-v="0.90" onclick="lPick(this,'l-conv')"><span>Medium</span><span class="opt-sz">0.90×</span></div>
+      <div class="opt"         data-g="l-conv" data-v="1.00" onclick="lPick(this,'l-conv')"><span>High</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="l-conv" data-v="1.25" onclick="lPick(this,'l-conv')"><span>Highest</span><span class="opt-sz">1.25×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Beta</div>
+      <div class="card-sub">Market sensitivity — portfolio drawdown risk</div>
+      <div class="opt sel-mod" data-g="l-beta" data-v="1.0"  onclick="lPick(this,'l-beta')"><span>Low — beta &lt;0.5</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="l-beta" data-v="0.95" onclick="lPick(this,'l-beta')"><span>Medium — 0.5–1.0</span><span class="opt-sz">0.95×</span></div>
+      <div class="opt"         data-g="l-beta" data-v="0.85" onclick="lPick(this,'l-beta')"><span>High — 1.0–1.5</span><span class="opt-sz">0.85×</span></div>
+      <div class="opt"         data-g="l-beta" data-v="0.75" onclick="lPick(this,'l-beta')"><span>Very high — &gt;1.5</span><span class="opt-sz">0.75×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Crowdedness</div>
+      <div class="card-sub">Positioning risk — forced selling amplifies drawdown</div>
+      <div class="opt sel-mod" data-g="l-crowd" data-v="1.0"  onclick="lPick(this,'l-crowd')"><span>Uncrowded</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="l-crowd" data-v="0.85" onclick="lPick(this,'l-crowd')"><span>Some crowding</span><span class="opt-sz">0.85×</span></div>
+      <div class="opt"         data-g="l-crowd" data-v="0.70" onclick="lPick(this,'l-crowd')"><span>Crowded</span><span class="opt-sz">0.70×</span></div>
+      <div class="opt"         data-g="l-crowd" data-v="0.55" onclick="lPick(this,'l-crowd')"><span>Very crowded</span><span class="opt-sz">0.55×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Volatility</div>
+      <div class="card-sub">60-day realised vol — widens mark-to-market swings</div>
+      <div class="opt sel-mod" data-g="l-vol" data-v="1.0"  onclick="lPick(this,'l-vol')"><span>Low — &lt;20% ann.</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="l-vol" data-v="0.90" onclick="lPick(this,'l-vol')"><span>Medium — 20–40%</span><span class="opt-sz">0.90×</span></div>
+      <div class="opt"         data-g="l-vol" data-v="0.78" onclick="lPick(this,'l-vol')"><span>High — 40–60%</span><span class="opt-sz">0.78×</span></div>
+      <div class="opt"         data-g="l-vol" data-v="0.65" onclick="lPick(this,'l-vol')"><span>Extreme — &gt;60%</span><span class="opt-sz">0.65×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Liquidity</div>
+      <div class="card-sub">Days to build full position at 20% of ADV</div>
+      <div class="opt sel-mod" data-g="l-liq" data-v="1.0"  onclick="lPick(this,'l-liq')"><span>High — &lt;1 day</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="l-liq" data-v="0.90" onclick="lPick(this,'l-liq')"><span>Medium — 1–3 days</span><span class="opt-sz">0.90×</span></div>
+      <div class="opt"         data-g="l-liq" data-v="0.75" onclick="lPick(this,'l-liq')"><span>Low — 3–7 days</span><span class="opt-sz">0.75×</span></div>
+      <div class="opt"         data-g="l-liq" data-v="0.55" onclick="lPick(this,'l-liq')"><span>Illiquid — &gt;7 days</span><span class="opt-sz">0.55×</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 4 — output</div>
+
+  <div style="margin-bottom:14px;">
+    <div class="mod-row">
+      <span class="mod-name">Downside band ceiling</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="l-mb-ds" style="width:50%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="l-ms-ds" style="color:rgb(99,153,34);">5.0% max</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Timing multiplier</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="l-mb-tm" style="background:rgb(24,95,165);width:100%;"></div></div>
+      <span class="mod-score" id="l-ms-tm" style="color:rgb(99,153,34);">1.0×</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Kelly + skew</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="l-mb-k" style="background:rgb(29,158,117);width:39%;"></div></div>
+      <span class="mod-score c-teal" id="l-ms-k">3.9% (4.8x R/R)</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Conviction</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="l-mb-cv" style="background:rgb(186,117,23);width:36%;"></div></div>
+      <span class="mod-score c-purple" id="l-ms-cv" style="color:rgb(186,117,23);">0.90×</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Beta + crowd + vol + liq</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="l-mb-rm" style="width:100%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="l-ms-rm" style="color:rgb(99,153,34);">100%</span>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="metric">
+      <div class="metric-label">Final position size</div>
+      <div class="metric-val" id="l-m-sz">3.5%</div>
+      <div class="metric-sub">% of book</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Downside ceiling</div>
+      <div class="metric-val c-good" id="l-m-ceil">5.0%</div>
+      <div class="metric-sub">max holdable</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Skew-adj R/R</div>
+      <div class="metric-val c-good" id="l-m-rr">4.8x</div>
+      <div class="metric-sub">effective ratio</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">EV per £100</div>
+      <div class="metric-val c-good" id="l-m-ev">+£18.8</div>
+      <div class="metric-sub">at 50% win rate</div>
+    </div>
+  </div>
+
+  <div class="bar-labels">
+    <span>0%</span><span id="l-bl">3.5%</span><span>10% (hard cap)</span>
+  </div>
+  <div class="bar-wrap">
+    <div class="bar-fill" id="l-mainbar" style="width:35%;background:rgb(163,45,45);"></div>
+  </div>
+
+  <div class="note-box">
+    <div class="note-head" id="l-nh">Underweight — constrained</div>
+    <p class="note-text" id="l-nt"></p>
+  </div>
+
+  <p style="font-size:11px;color:var(--text-tertiary);margin-top:24px;text-align:center;">
+    CAA Claude · Long position sizer · 50% win rate · 2.0x R/R baseline · 60% target exposure · 10% hard cap
+  </p>
+
+</div><!-- /long-section -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     SHORT SIZER
+═══════════════════════════════════════════════════════════ -->
+<div id="short-section" style="display:none">
+
+  <div class="ticker-row">
+    <input type="text" id="s-ticker" class="ticker-input" placeholder="Ticker (e.g. AAPL)">
+    <button class="save-btn" onclick="sSaveDecision()">Save Decision</button>
+    <span id="s-save-msg" class="save-msg"></span>
+  </div>
+
+  <header>
+    <h1>Short position sizer</h1>
+    <p>Kelly-based sizing with risk modifiers — 40% win rate, 1.7x R/R baseline, 9-year track record</p>
+  </header>
+
+  <div class="top-bar">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="top-stat">Names in book</span>
+      <input type="range" min="10" max="15" step="1" value="12" id="s-n-names" oninput="sUpdateNames(this.value)">
+      <span style="font-size:13px;font-weight:500;color:var(--text);min-width:20px;" id="s-n-names-val">12</span>
+    </div>
+    <span class="top-stat">Target exposure: <strong>40%</strong></span>
+    <span class="top-stat">Win rate: <strong>40%</strong></span>
+    <span class="top-stat">Avg position: <strong id="s-avg-pos">3.3%</strong></span>
+  </div>
+
+  <div class="grid-3t">
+    <div class="tier-card" style="background:var(--green-bg);border-color:var(--green-border);">
+      <div class="tier-label" style="color:var(--green-text);">High conviction</div>
+      <div class="tier-size c-good" id="s-t-high">5.7%</div>
+      <div class="tier-sub">best Kelly + modifiers</div>
+    </div>
+    <div class="tier-card" style="background:var(--amber-bg);border-color:var(--amber-border);">
+      <div class="tier-label" style="color:var(--amber-text);">Medium conviction</div>
+      <div class="tier-size c-ok" id="s-t-mid">1.7%</div>
+      <div class="tier-sub">average Kelly + modifiers</div>
+    </div>
+    <div class="tier-card" style="background:var(--red-bg);border-color:var(--red-border);">
+      <div class="tier-label" style="color:var(--red-text);">Low conviction</div>
+      <div class="tier-size c-bad" id="s-t-low">0.3%</div>
+      <div class="tier-sub">worst Kelly + modifiers</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 1 — Kelly inputs</div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-label">If wrong</div>
+      <div class="card-sub">Stock rallies against you</div>
+      <div class="opt sel-loss" data-g="s-loss" data-v="10" onclick="sPick(this,'s-loss')"><span>+10% against</span><span class="opt-sz" id="s-lk-10">3.3%</span></div>
+      <div class="opt"         data-g="s-loss" data-v="20" onclick="sPick(this,'s-loss')"><span>+20% against</span><span class="opt-sz" id="s-lk-20">1.9%</span></div>
+      <div class="opt"         data-g="s-loss" data-v="30" onclick="sPick(this,'s-loss')"><span>+30% against</span><span class="opt-sz" id="s-lk-30">1.3%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">If right</div>
+      <div class="card-sub">Stock falls to your target</div>
+      <div class="opt"         data-g="s-gain" data-v="30" onclick="sPick(this,'s-gain')"><span>−30% target</span><span class="opt-sz" id="s-gk-30">2.4%</span></div>
+      <div class="opt sel-gain" data-g="s-gain" data-v="50" onclick="sPick(this,'s-gain')"><span>−50% target</span><span class="opt-sz" id="s-gk-50">3.3%</span></div>
+      <div class="opt"         data-g="s-gain" data-v="75" onclick="sPick(this,'s-gain')"><span>−75% target</span><span class="opt-sz" id="s-gk-75">3.8%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Catalyst timing</div>
+      <div class="card-sub">When you find out</div>
+      <div class="opt"          data-g="s-time" data-v="0.33" onclick="sPick(this,'s-time')"><span>3 months</span><span class="opt-sz" id="s-tk-3m">1.6%</span></div>
+      <div class="opt sel-time" data-g="s-time" data-v="0.67" onclick="sPick(this,'s-time')"><span>1 month</span><span class="opt-sz" id="s-tk-1m">3.3%</span></div>
+      <div class="opt"          data-g="s-time" data-v="1.0"  onclick="sPick(this,'s-time')"><span>1 week</span><span class="opt-sz" id="s-tk-1w">5.0%</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 2 — risk modifiers</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-label">Squeeze risk</div>
+      <div class="card-sub">Short interest, float, crowding</div>
+      <div class="opt sel-mod" data-g="s-squeeze" data-v="1.0" onclick="sPick(this,'s-squeeze')"><span>Low — uncrowded</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="s-squeeze" data-v="0.8" onclick="sPick(this,'s-squeeze')"><span>Medium — some crowding</span><span class="opt-sz">0.80×</span></div>
+      <div class="opt"         data-g="s-squeeze" data-v="0.6" onclick="sPick(this,'s-squeeze')"><span>High — crowded / high SI</span><span class="opt-sz">0.60×</span></div>
+      <div class="opt"         data-g="s-squeeze" data-v="0.4" onclick="sPick(this,'s-squeeze')"><span>Extreme — meme / low float</span><span class="opt-sz">0.40×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">60-day volatility</div>
+      <div class="card-sub">Realised vol — widens effective loss range</div>
+      <div class="opt sel-mod" data-g="s-vol" data-v="1.0"  onclick="sPick(this,'s-vol')"><span>Low — &lt;20% annualised</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="s-vol" data-v="0.85" onclick="sPick(this,'s-vol')"><span>Medium — 20–40%</span><span class="opt-sz">0.85×</span></div>
+      <div class="opt"         data-g="s-vol" data-v="0.7"  onclick="sPick(this,'s-vol')"><span>High — 40–60%</span><span class="opt-sz">0.70×</span></div>
+      <div class="opt"         data-g="s-vol" data-v="0.55" onclick="sPick(this,'s-vol')"><span>Extreme — &gt;60%</span><span class="opt-sz">0.55×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Liquidity</div>
+      <div class="card-sub">Days to exit at 20% of ADV</div>
+      <div class="opt sel-mod" data-g="s-liq" data-v="1.0"  onclick="sPick(this,'s-liq')"><span>High — exit in &lt;1 day</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="s-liq" data-v="0.85" onclick="sPick(this,'s-liq')"><span>Medium — 1–3 days</span><span class="opt-sz">0.85×</span></div>
+      <div class="opt"         data-g="s-liq" data-v="0.65" onclick="sPick(this,'s-liq')"><span>Low — 3–7 days</span><span class="opt-sz">0.65×</span></div>
+      <div class="opt"         data-g="s-liq" data-v="0.45" onclick="sPick(this,'s-liq')"><span>Illiquid — &gt;7 days</span><span class="opt-sz">0.45×</span></div>
+    </div>
+    <div class="card">
+      <div class="card-label">Stock beta</div>
+      <div class="card-sub">Market sensitivity — portfolio-level effect</div>
+      <div class="opt sel-mod" data-g="s-beta" data-v="1.0"  onclick="sPick(this,'s-beta')"><span>Low — beta &lt;0.5</span><span class="opt-sz">1.00×</span></div>
+      <div class="opt"         data-g="s-beta" data-v="0.9"  onclick="sPick(this,'s-beta')"><span>Medium — beta 0.5–1.0</span><span class="opt-sz">0.90×</span></div>
+      <div class="opt"         data-g="s-beta" data-v="0.75" onclick="sPick(this,'s-beta')"><span>High — beta 1.0–1.5</span><span class="opt-sz">0.75×</span></div>
+      <div class="opt"         data-g="s-beta" data-v="0.6"  onclick="sPick(this,'s-beta')"><span>Very high — beta &gt;1.5</span><span class="opt-sz">0.60×</span></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-label">Step 3 — output</div>
+
+  <div style="margin-bottom:14px;">
+    <div class="mod-row">
+      <span class="mod-name">Kelly (pre-modifier)</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="s-mb-kelly" style="background:rgb(55,138,221);width:55%;"></div></div>
+      <span class="mod-score c-purple" id="s-ms-kelly">3.3%</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Squeeze</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="s-mb-sq"   style="width:100%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="s-ms-sq"   style="color:rgb(99,153,34);">1.00×</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Volatility</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="s-mb-vol"  style="width:100%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="s-ms-vol"  style="color:rgb(99,153,34);">1.00×</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Liquidity</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="s-mb-liq"  style="width:100%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="s-ms-liq"  style="color:rgb(99,153,34);">1.00×</span>
+    </div>
+    <div class="mod-row">
+      <span class="mod-name">Beta</span>
+      <div class="mod-bar-wrap"><div class="mod-bar" id="s-mb-beta" style="width:100%;background:rgb(99,153,34);"></div></div>
+      <span class="mod-score" id="s-ms-beta" style="color:rgb(99,153,34);">1.00×</span>
+    </div>
+  </div>
+
+  <div class="grid-4">
+    <div class="metric">
+      <div class="metric-label">Final position size</div>
+      <div class="metric-val" id="s-m-size">3.3%</div>
+      <div class="metric-sub">% of book</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Kelly pre-modifier</div>
+      <div class="metric-val c-purple" id="s-m-kelly-raw">3.3%</div>
+      <div class="metric-sub">% of book</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Combined modifier</div>
+      <div class="metric-val c-good" id="s-m-mod">100%</div>
+      <div class="metric-sub">product of 4 factors</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">R/R ratio</div>
+      <div class="metric-val c-good" id="s-m-rr">5.0x</div>
+      <div class="metric-sub">gain ÷ loss</div>
+    </div>
+  </div>
+
+  <div class="bar-labels">
+    <span>0%</span><span id="s-bar-label">3.3%</span><span id="s-bar-max-label">6.0% (max)</span>
+  </div>
+  <div class="bar-wrap">
+    <div class="bar-fill" id="s-main-bar" style="width:55%;background:rgb(99,153,34);"></div>
+  </div>
+
+  <div class="note-box">
+    <div class="note-head" id="s-note-head">Standard weight — proceed</div>
+    <p class="note-text" id="s-note-text"></p>
+  </div>
+
+  <p style="font-size:11px;color:var(--text-tertiary);margin-top:24px;text-align:center;">
+    CAA Claude · Short position sizer · 40% win rate · 1.7x R/R · 9yr track record · 450 shorts
+  </p>
+
+</div><!-- /short-section -->
+
+</div><!-- /page -->
+
+<script>
+/* ═══════════════════════════════════════════════════
+   LONG SIZER
+═══════════════════════════════════════════════════ */
+const WIN_L = 0.50, HARD_CAP = 10;
+let LN = 12;
+const LS = { loss: 10, gain: 50, skew: 4, time: 1.0, conv: 0.90, beta: 1.0, crowd: 1.0, vol: 1.0, liq: 1.0 };
+const LDS_BANDS = { 10: { floor: 0.3, ceil: 1.0 }, 20: { floor: 0.2, ceil: 0.70 }, 30: { floor: 0.15, ceil: 0.50 } };
+
+function lAvgPos()            { return 60 / LN; }
+function lSkewAdjRR(g,l,sk)   { return (g * 0.75 + (l * sk) * 0.25) / l; }
+function lRawKelly(g,l,sk)    { const rr = lSkewAdjRR(g,l,sk); return WIN_L - (1 - WIN_L) / rr; }
+function lBandCeil(l)         { return lAvgPos() * LDS_BANDS[l].ceil; }
+function lBandFloor(l)        { return Math.max(0.3, lAvgPos() * LDS_BANDS[l].floor); }
+function lKellyWithinBand(g,l,sk) {
+  const floor = lBandFloor(l), ceil = lBandCeil(l), k = lRawKelly(g,l,sk);
+  if (k <= 0) return floor * 0.6;
+  const refK = lRawKelly(30,10,2), maxK = lRawKelly(75,10,6);
+  const norm = Math.min(1, Math.max(0, (k - refK) / Math.max(0.001, maxK - refK)));
+  return floor + (ceil - floor) * norm;
+}
+function lFinalSize(g,l,sk,t,cv,b,cr,vo,lq) {
+  const kB = lKellyWithinBand(g,l,sk), mods = cv*b*cr*vo*lq*t;
+  return Math.min(HARD_CAP, Math.max(lBandFloor(l)*0.4, kB * mods));
+}
+function lTiers() {
+  return {
+    h: Math.min(HARD_CAP, lFinalSize(75,10,6,1.0,1.25,1.0,1.0,1.0,1.0)).toFixed(1),
+    m: Math.min(HARD_CAP, lFinalSize(50,20,4,0.8,0.9,0.95,0.85,0.9,0.9)).toFixed(1),
+    l: Math.max(0.3,       lFinalSize(30,30,2,0.6,0.7,0.85,0.7,0.78,0.75)).toFixed(1)
+  };
+}
+function lModColor(v, isConv) {
+  if (isConv) return v >= 1.0 ? '#639922' : v >= 0.85 ? '#BA7517' : '#A32D2D';
+  return v >= 0.9 ? '#639922' : v >= 0.75 ? '#BA7517' : '#A32D2D';
+}
+function lDsColor(l) { return l === 10 ? '#639922' : l === 20 ? '#BA7517' : '#A32D2D'; }
+
+function lUpdN(v) { LN = parseInt(v); document.getElementById('l-nn-v').textContent = LN; lRender(); }
+
+function lPick(el, g) {
+  document.querySelectorAll('[data-g="' + g + '"]').forEach(e =>
+    e.classList.remove('sel-loss','sel-gain','sel-time','sel-mod','sel-skew'));
+  const key = g.slice(2); // strip 'l-'
+  LS[key] = parseFloat(el.dataset.v);
+  const cls = key === 'loss' ? 'sel-skew' : key === 'gain' ? 'sel-gain' :
+              key === 'time' ? 'sel-time' : key === 'skew' ? 'sel-skew' : 'sel-mod';
+  el.classList.add(cls);
+  lRender();
+}
+
+function lUpdLabels() {
+  [10,20,30].forEach(l => {
+    document.getElementById('l-lk-'+l).textContent =
+      lFinalSize(LS.gain,l,LS.skew,LS.time,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1) + '%';
+  });
+  [30,50,75].forEach(g => {
+    document.getElementById('l-gk-'+g).textContent =
+      lFinalSize(g,LS.loss,LS.skew,LS.time,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1) + '%';
+  });
+  [2,3,4,5,6].forEach(sk => {
+    document.getElementById('l-sk-'+sk).textContent =
+      lFinalSize(LS.gain,LS.loss,sk,LS.time,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1) + '%';
+  });
+  [{id:'3m',v:1.0},{id:'6m',v:0.8},{id:'9m',v:0.6}].forEach(t => {
+    document.getElementById('l-tk-'+t.id).textContent =
+      lFinalSize(LS.gain,LS.loss,LS.skew,t.v,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1) + '%';
+  });
+}
+
+function lRender() {
+  const avg  = lAvgPos();
+  const rr   = lSkewAdjRR(LS.gain, LS.loss, LS.skew);
+  const k    = lRawKelly(LS.gain, LS.loss, LS.skew);
+  const ceil = lBandCeil(LS.loss), floor = lBandFloor(LS.loss);
+  const kB   = lKellyWithinBand(LS.gain, LS.loss, LS.skew);
+  const riskMod = LS.beta * LS.crowd * LS.vol * LS.liq;
+  const size = parseFloat(lFinalSize(LS.gain,LS.loss,LS.skew,LS.time,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1));
+  const evRaw = (WIN_L * (LS.gain*0.75 + LS.loss*LS.skew*0.25)) - ((1-WIN_L) * LS.loss);
+
+  document.getElementById('l-ap').textContent = avg.toFixed(1) + '%';
+  const t = lTiers();
+  document.getElementById('l-th').textContent = t.h + '%';
+  document.getElementById('l-tm').textContent = t.m + '%';
+  document.getElementById('l-tl').textContent = t.l + '%';
+
+  const floorPct  = Math.round((floor / HARD_CAP) * 100);
+  const ceilPct   = Math.min(100, Math.round((ceil / HARD_CAP) * 100));
+  const markerPct = Math.min(100, Math.round((size / HARD_CAP) * 100));
+  const bf = document.getElementById('l-band-fill');
+  bf.style.left = floorPct + '%';
+  bf.style.width = Math.max(0, ceilPct - floorPct) + '%';
+  bf.style.background = lDsColor(LS.loss);
+  document.getElementById('l-band-marker').style.left = 'calc(' + markerPct + '% - 1.5px)';
+  document.getElementById('l-band-label').textContent = 'band: ' + floor.toFixed(1) + '% – ' + ceil.toFixed(1) + '%';
+
+  document.getElementById('l-mb-ds').style.width = ceilPct + '%';
+  document.getElementById('l-mb-ds').style.background = lDsColor(LS.loss);
+  document.getElementById('l-ms-ds').textContent = ceil.toFixed(1) + '% max';
+  document.getElementById('l-ms-ds').style.color = lDsColor(LS.loss);
+
+  document.getElementById('l-mb-tm').style.width = Math.round(LS.time * 100) + '%';
+  document.getElementById('l-ms-tm').textContent = LS.time.toFixed(1) + '×';
+  document.getElementById('l-ms-tm').style.color = LS.time===1.0 ? '#639922' : LS.time===0.8 ? '#BA7517' : '#A32D2D';
+
+  document.getElementById('l-mb-k').style.width = Math.min(100, Math.round((kB/HARD_CAP)*100)) + '%';
+  document.getElementById('l-ms-k').textContent = kB.toFixed(1) + '% (' + rr.toFixed(1) + 'x R/R)';
+
+  document.getElementById('l-mb-cv').style.width = Math.round(((LS.conv-0.7)/0.55)*100) + '%';
+  document.getElementById('l-mb-cv').style.background = lModColor(LS.conv, true);
+  document.getElementById('l-ms-cv').textContent = LS.conv.toFixed(2) + '×';
+  document.getElementById('l-ms-cv').style.color = lModColor(LS.conv, true);
+
+  const rmPct = Math.round(((riskMod-0.5)/0.5)*100);
+  document.getElementById('l-mb-rm').style.width = Math.min(100,Math.max(0,rmPct)) + '%';
+  document.getElementById('l-mb-rm').style.background = lModColor(riskMod, false);
+  document.getElementById('l-ms-rm').textContent = (riskMod*100).toFixed(0) + '%';
+  document.getElementById('l-ms-rm').style.color = lModColor(riskMod, false);
+
+  const rrCls = rr >= 3 ? 'c-good' : rr >= 2 ? 'c-ok' : 'c-bad';
+  document.getElementById('l-m-sz').textContent = size.toFixed(1) + '%';
+  document.getElementById('l-m-ceil').textContent = ceil.toFixed(1) + '%';
+  document.getElementById('l-m-ceil').className = 'metric-val ' + (LS.loss===10?'c-good':LS.loss===20?'c-ok':'c-bad');
+  document.getElementById('l-m-rr').textContent = rr.toFixed(1) + 'x';
+  document.getElementById('l-m-rr').className = 'metric-val ' + rrCls;
+  document.getElementById('l-m-ev').textContent = evRaw>=0 ? '+£'+evRaw.toFixed(1) : '−£'+Math.abs(evRaw).toFixed(1);
+  document.getElementById('l-m-ev').className = 'metric-val ' + (evRaw>0?'c-good':'c-bad');
+
+  const barPct = Math.min(100, Math.round((size/HARD_CAP)*100));
+  document.getElementById('l-mainbar').style.width = barPct + '%';
+  document.getElementById('l-mainbar').style.background = size>=avg*1.3?'#639922':size>=avg*0.8?'#BA7517':'#A32D2D';
+  document.getElementById('l-bl').textContent = size.toFixed(1) + '%';
+
+  lUpdLabels();
+
+  const tLabel = LS.time===1.0?'3-month':LS.time===0.8?'6-month':'9-month';
+  const vsAvg  = size>=avg*1.3?'overweight':size<=avg*0.7?'underweight':'near average weight';
+  const flags  = [];
+  if (LS.loss===30)   flags.push('wide downside — band compressed to '+ceil.toFixed(1)+'%');
+  if (LS.time===0.6)  flags.push('9-month catalyst — sized at 60%');
+  if (LS.crowd<=0.7)  flags.push('crowded');
+  if (LS.vol<=0.78)   flags.push('high vol');
+  if (LS.liq<=0.75)   flags.push('illiquid');
+  if (LS.beta<=0.85)  flags.push('high beta');
+  if (LS.conv>=1.25)  flags.push('highest conviction override active');
+  if (size>=HARD_CAP*0.95) flags.push('at 10% hard cap');
+
+  let head, note;
+  if (k <= 0) {
+    head = 'Negative EV — pass';
+    note = 'Skew-adjusted R/R of '+rr.toFixed(1)+'x at 50% win rate is below break-even. Improve entry, raise expected case, or find higher skew.';
+  } else {
+    const flagStr = flags.length ? 'Flags: '+flags.join(', ')+'.' : 'No flags.';
+    head = size>=avg*1.3 ? 'Overweight — strong setup' : size<=avg*0.7 ? 'Underweight — constrained' : 'Standard weight — proceed';
+    note = 'Downside band: '+floor.toFixed(1)+'%–'+ceil.toFixed(1)+'% (−'+LS.loss+'% ds). Kelly+skew: '+kB.toFixed(1)+'% at '+rr.toFixed(1)+'x R/R. Timing ('+tLabel+'): '+LS.time.toFixed(1)+'×. Conviction: '+LS.conv.toFixed(2)+'×. Risk mods: '+(riskMod*100).toFixed(0)+'%. Final: '+size.toFixed(1)+'% ('+vsAvg+' vs '+avg.toFixed(1)+'% avg). EV £'+evRaw.toFixed(1)+'/£100. '+flagStr;
+  }
+  document.getElementById('l-nh').textContent = head;
+  document.getElementById('l-nt').textContent = note;
+}
+
+/* ═══════════════════════════════════════════════════
+   SHORT SIZER
+═══════════════════════════════════════════════════ */
+const WIN_S = 0.40, S_EXPOSURE = 40;
+let SN = 12;
+const SS = { loss: 10, gain: 50, time: 0.67, squeeze: 1.0, vol: 1.0, liq: 1.0, beta: 1.0 };
+
+function sKelly(g,l)       { return WIN_S - (1 - WIN_S) / (g / l); }
+function sAvgPos()         { return S_EXPOSURE / SN; }
+function sKellySize(g,l,t) {
+  const avg = sAvgPos(), k = sKelly(g,l);
+  if (k <= 0) return avg * 0.4;
+  const avgK = sKelly(50,10), ratio = (k * t) / (avgK * 0.67);
+  return Math.min(avg*1.8, Math.max(avg*0.4, avg*ratio));
+}
+function sFinalSize(g,l,t,sq,vo,lq,b) {
+  const ks = sKellySize(g,l,t), mod = sq*vo*lq*b, avg = sAvgPos();
+  return Math.min(avg*1.8, Math.max(0.3, ks*mod));
+}
+function sTiers() {
+  const avg = sAvgPos();
+  return {
+    high: Math.min(avg*1.8, sKellySize(75,10,1.0)*1.0*1.0*1.0*1.0).toFixed(1),
+    mid:  Math.min(avg*1.8, sKellySize(50,10,0.67)*0.8*0.85*0.85*0.9).toFixed(1),
+    low:  Math.max(0.3,     sKellySize(30,20,0.33)*0.6*0.7*0.65*0.75).toFixed(1)
+  };
+}
+function sUpdateNames(v) { SN = parseInt(v); document.getElementById('s-n-names-val').textContent = SN; sRender(); }
+function sModColor(v)    { return v>=0.9?'#639922':v>=0.7?'#BA7517':'#A32D2D'; }
+
+function sUpdateOptionLabels() {
+  [10,20,30].forEach(l => {
+    const sz = sFinalSize(SS.gain,l,SS.time,SS.squeeze,SS.vol,SS.liq,SS.beta);
+    document.getElementById('s-lk-'+l).textContent = sKelly(SS.gain,l)>0 ? sz.toFixed(1)+'%' : 'neg EV';
+  });
+  [30,50,75].forEach(g => {
+    const sz = sFinalSize(g,SS.loss,SS.time,SS.squeeze,SS.vol,SS.liq,SS.beta);
+    document.getElementById('s-gk-'+g).textContent = sKelly(g,SS.loss)>0 ? sz.toFixed(1)+'%' : 'neg EV';
+  });
+  [{id:'3m',v:0.33},{id:'1m',v:0.67},{id:'1w',v:1.0}].forEach(t => {
+    document.getElementById('s-tk-'+t.id).textContent =
+      sFinalSize(SS.gain,SS.loss,t.v,SS.squeeze,SS.vol,SS.liq,SS.beta).toFixed(1) + '%';
+  });
+}
+
+function sPick(el, g) {
+  document.querySelectorAll('[data-g="' + g + '"]').forEach(e =>
+    e.classList.remove('sel-loss','sel-gain','sel-time','sel-mod'));
+  const key = g.slice(2); // strip 's-'
+  SS[key] = parseFloat(el.dataset.v);
+  const cls = key==='loss'?'sel-loss':key==='gain'?'sel-gain':key==='time'?'sel-time':'sel-mod';
+  el.classList.add(cls);
+  sRender();
+}
+
+function sRender() {
+  const avg    = sAvgPos();
+  const ks     = parseFloat(sKellySize(SS.gain,SS.loss,SS.time).toFixed(1));
+  const mod    = SS.squeeze * SS.vol * SS.liq * SS.beta;
+  const size   = parseFloat(sFinalSize(SS.gain,SS.loss,SS.time,SS.squeeze,SS.vol,SS.liq,SS.beta).toFixed(1));
+  const rr     = parseFloat((SS.gain/SS.loss).toFixed(2));
+  const maxPos = parseFloat((avg*1.8).toFixed(1));
+
+  document.getElementById('s-avg-pos').textContent = avg.toFixed(1) + '%';
+  document.getElementById('s-bar-max-label').textContent = maxPos.toFixed(1) + '% (max)';
+
+  const t = sTiers();
+  document.getElementById('s-t-high').textContent = t.high + '%';
+  document.getElementById('s-t-mid').textContent  = t.mid  + '%';
+  document.getElementById('s-t-low').textContent  = t.low  + '%';
+
+  document.getElementById('s-mb-kelly').style.width = Math.min(100, Math.round((ks/maxPos)*100)) + '%';
+  document.getElementById('s-ms-kelly').textContent = ks.toFixed(1) + '%';
+
+  [{id:'sq',v:SS.squeeze},{id:'vol',v:SS.vol},{id:'liq',v:SS.liq},{id:'beta',v:SS.beta}].forEach(m => {
+    const pct = Math.round(((m.v-0.4)/0.6)*100);
+    document.getElementById('s-mb-'+m.id).style.width = pct + '%';
+    document.getElementById('s-mb-'+m.id).style.background = sModColor(m.v);
+    document.getElementById('s-ms-'+m.id).textContent = m.v.toFixed(2) + '×';
+    document.getElementById('s-ms-'+m.id).style.color = sModColor(m.v);
+  });
+
+  const rrCls = rr>=2.5?'c-good':rr>=1.7?'c-ok':'c-bad';
+  document.getElementById('s-m-size').textContent = size.toFixed(1) + '%';
+  document.getElementById('s-m-kelly-raw').textContent = ks.toFixed(1) + '%';
+  document.getElementById('s-m-mod').textContent = (mod*100).toFixed(0) + '%';
+  document.getElementById('s-m-mod').className = 'metric-val '+(mod>=0.8?'c-good':mod>=0.6?'c-ok':'c-bad');
+  document.getElementById('s-m-rr').textContent = rr.toFixed(1) + 'x';
+  document.getElementById('s-m-rr').className = 'metric-val ' + rrCls;
+
+  const barPct = Math.min(100, Math.round((size/maxPos)*100));
+  document.getElementById('s-main-bar').style.width = barPct + '%';
+  document.getElementById('s-main-bar').style.background = mod>=0.8&&rr>=1.7?'#639922':mod>=0.6?'#BA7517':'#A32D2D';
+  document.getElementById('s-bar-label').textContent = size.toFixed(1) + '%';
+
+  sUpdateOptionLabels();
+
+  const timingLabel = SS.time<=0.34?'3-month':SS.time<=0.68?'1-month':'1-week';
+  const vsAvg  = size>avg*1.3?'overweight':size<avg*0.7?'underweight':'near average weight';
+  const modFlags = [];
+  if (SS.squeeze<=0.6) modFlags.push('high squeeze risk');
+  if (SS.vol<=0.7)     modFlags.push('elevated vol');
+  if (SS.liq<=0.65)    modFlags.push('liquidity constraint');
+  if (SS.beta<=0.75)   modFlags.push('high beta drag');
+
+  let head, note;
+  if (sKelly(SS.gain, SS.loss) <= 0) {
+    head = 'Negative EV — pass';
+    note = 'Kelly is negative before modifiers. No position size is justified regardless of modifier inputs.';
+  } else if (mod < 0.5) {
+    head = 'Modifiers heavily constrain this idea';
+    note = 'Combined modifier of '+(mod*100).toFixed(0)+'% cuts Kelly from '+ks.toFixed(1)+'% to '+size.toFixed(1)+'%. Flags: '+modFlags.join(', ')+'. Consider whether the thesis is worth running at this size.';
+  } else {
+    const flagStr = modFlags.length ? 'Modifier flags: '+modFlags.join(', ')+'.' : 'No material modifier flags.';
+    head = size>avg*1.2 ? 'Overweight — strong setup' : 'Standard weight — proceed';
+    note = 'Kelly implies '+ks.toFixed(1)+'%, modifiers scale to '+size.toFixed(1)+'% ('+vsAvg+' vs '+avg.toFixed(1)+'% avg). Combined modifier '+(mod*100).toFixed(0)+'%. '+flagStr+' Timing: '+timingLabel+' catalyst.';
+  }
+  document.getElementById('s-note-head').textContent = head;
+  document.getElementById('s-note-text').textContent = note;
+}
+
+/* ═══════════════════════════════════════════════════
+   SAVE DECISION
+═══════════════════════════════════════════════════ */
+async function lSaveDecision() {
+  const ticker = document.getElementById('l-ticker').value.trim().toUpperCase();
+  const msg = document.getElementById('l-save-msg');
+  if (!ticker) { msg.textContent = 'Enter a ticker first'; msg.style.color = 'var(--red-text)'; return; }
+  const size = parseFloat(lFinalSize(LS.gain,LS.loss,LS.skew,LS.time,LS.conv,LS.beta,LS.crowd,LS.vol,LS.liq).toFixed(1));
+  try {
+    const resp = await fetch('/api/save-decision', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ticker, sizer_type: 'long', inputs: { ...LS, N: LN }, final_size: size })
+    });
+    if (resp.ok) { msg.textContent = 'Sizing decision saved for ' + ticker; msg.style.color = 'var(--green-text)'; }
+    else         { msg.textContent = 'Error saving decision'; msg.style.color = 'var(--red-text)'; }
+  } catch (e)  { msg.textContent = 'Error: ' + e.message; msg.style.color = 'var(--red-text)'; }
+  setTimeout(() => { msg.textContent = ''; }, 4000);
+}
+
+async function sSaveDecision() {
+  const ticker = document.getElementById('s-ticker').value.trim().toUpperCase();
+  const msg = document.getElementById('s-save-msg');
+  if (!ticker) { msg.textContent = 'Enter a ticker first'; msg.style.color = 'var(--red-text)'; return; }
+  const size = parseFloat(sFinalSize(SS.gain,SS.loss,SS.time,SS.squeeze,SS.vol,SS.liq,SS.beta).toFixed(1));
+  try {
+    const resp = await fetch('/api/save-decision', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ticker, sizer_type: 'short', inputs: { ...SS, N: SN }, final_size: size })
+    });
+    if (resp.ok) { msg.textContent = 'Sizing decision saved for ' + ticker; msg.style.color = 'var(--green-text)'; }
+    else         { msg.textContent = 'Error saving decision'; msg.style.color = 'var(--red-text)'; }
+  } catch (e)  { msg.textContent = 'Error: ' + e.message; msg.style.color = 'var(--red-text)'; }
+  setTimeout(() => { msg.textContent = ''; }, 4000);
+}
+
+/* ═══════════════════════════════════════════════════
+   ROUTING
+═══════════════════════════════════════════════════ */
+function route() {
+  const hash = location.hash || '#long';
+  document.getElementById('long-section').style.display  = hash === '#long'  ? '' : 'none';
+  document.getElementById('short-section').style.display = hash === '#short' ? '' : 'none';
+  document.querySelectorAll('.nav-tab').forEach(t =>
+    t.classList.toggle('active', t.getAttribute('href') === hash));
+}
+window.addEventListener('hashchange', route);
+
+/* init */
+route();
+lRender();
+sRender();
+</script>
+
+</body>
+</html>
