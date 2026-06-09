@@ -159,3 +159,4 @@ export default function PortfolioPage() {
     </div>
   )
 }
+export const runtime = 'edge'; 
