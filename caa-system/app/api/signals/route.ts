@@ -4,6 +4,7 @@ import { getTechnicals } from '@/lib/polygon'
 import { evaluateSignals } from '@/lib/signals'
 import { PORTFOLIOS } from '@/lib/portfolios'
 
+export const runtime = 'edge'
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
