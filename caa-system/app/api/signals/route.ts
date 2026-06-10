@@ -4,7 +4,8 @@ import { getTechnicals } from '@/lib/polygon'
 import { evaluateSignals } from '@/lib/signals'
 import { PORTFOLIOS } from '@/lib/portfolios'
 
-export const revalidate = 300  // Cache 5 minutes
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function GET(req: NextRequest) {
   try {
