@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technical Long Screen — CAA</title>
+<style>
+  :root{
+    --ink:#1c1c1c; --muted:#7a7a7a; --line:#e3e3e3;
+    --accent:#1f7a4d; --accent-deep:#155e3a;
+    --tintrow:#eef6f0; --tintbox:#f3f9f5;
+    --badge-bg:#eaf4ee; --badge-br:#bcdcc7;
+    --dot-empty:#cfcfcf; --plus:#1f7a4d; --bg:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:Georgia,"Times New Roman",serif;font-size:14px;line-height:1.45;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1060px;margin:0 auto;padding:28px 30px 60px;}
+  h1{font-size:21px;font-weight:700;margin:0 0 8px;letter-spacing:.1px;}
+  .sub{color:var(--muted);font-size:12.5px;line-height:1.55;max-width:940px;margin:0 0 20px;}
+  .sub b{color:var(--ink);font-weight:700;}
+
+  /* control bar */
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    padding:14px 16px;background:#fafbfa;border:1px solid var(--line);border-radius:6px;margin:0 0 22px;}
+  .controls label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:4px;}
+  .controls input[type=text],.controls input[type=password],.controls select{
+    font-family:Georgia,serif;font-size:13px;padding:6px 9px;border:1px solid #cfcfcf;border-radius:4px;background:#fff;color:var(--ink);}
+  .controls input[type=password]{width:230px;}
+  .controls input[type=text]{width:200px;}
+  .btn{font-family:Georgia,serif;font-size:13px;font-weight:700;letter-spacing:.04em;cursor:pointer;
+    color:#fff;background:var(--accent);border:1px solid var(--accent-deep);border-radius:4px;padding:7px 16px;}
+  .btn:disabled{opacity:.5;cursor:default;}
+  .btn.sec{color:var(--accent-deep);background:#fff;border-color:var(--badge-br);}
+  .chk{font-size:12px;color:var(--ink);display:flex;align-items:center;gap:5px;}
+  .status{font-size:12px;color:var(--muted);margin:0 0 16px;min-height:18px;}
+  .status b{color:var(--accent-deep);}
+  .err{color:#b03030;}
+
+  .reslabel{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;}
+  table{width:100%;border-collapse:collapse;}
+  thead th{text-align:left;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);}
+  th.num,td.num{text-align:right;}
+  tbody td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  .row-ready{background:var(--tintrow);}
+  .ticker{font-weight:700;font-size:14.5px;}
+  .reg{color:var(--muted);}
+  .strip{white-space:nowrap;font-size:13px;letter-spacing:2px;}
+  .strip .on{color:var(--accent);} .strip .off{color:var(--dot-empty);}
+  .points{font-weight:700;}
+  .gated{color:var(--muted);font-weight:400;font-size:12px;}
+  .badge{display:inline-block;font-size:11px;letter-spacing:.08em;font-weight:700;color:var(--accent-deep);
+    background:var(--badge-bg);border:1px solid var(--badge-br);border-radius:3px;padding:3px 9px;text-transform:uppercase;white-space:nowrap;}
+  .watch{color:var(--muted);font-size:12.5px;}
+  .widenote{color:var(--muted);font-size:11px;}
+  .drv-toggle{color:var(--muted);font-size:12px;cursor:pointer;user-select:none;padding:6px 10px 10px;display:inline-block;}
+  .drv-toggle .caret{display:inline-block;width:11px;color:var(--accent);}
+  .drv-row td{padding:0 10px;border-bottom:1px solid var(--line);}
+  .drv-box{background:var(--tintbox);border-radius:4px;margin:0 0 14px;padding:16px 20px;display:none;}
+  .drv-box.open{display:block;}
+  .drv{margin:0 0 13px;padding-left:20px;position:relative;font-size:13px;line-height:1.5;}
+  .drv:last-of-type{margin-bottom:14px;}
+  .drv .tick{position:absolute;left:0;top:0;color:var(--accent);font-weight:700;}
+  .drv .miss{position:absolute;left:0;top:0;color:var(--dot-empty);font-weight:700;}
+  .drv b{font-weight:700;}
+  .drv .plus{color:var(--plus);font-weight:700;margin-left:3px;}
+  .drv.dim{color:var(--muted);} .drv.dim b{color:#555;}
+  .verdict{font-size:13px;line-height:1.5;padding-top:4px;}
+  .verdict b{font-weight:700;}
+  .empty{padding:40px 10px;color:var(--muted);font-size:13px;text-align:center;}
+  .legend{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:11.5px;line-height:1.7;}
+  .legend b{color:var(--ink);} .legend .dotk{color:var(--accent);letter-spacing:2px;}
+  .note{margin-top:12px;font-style:italic;color:var(--muted);font-size:11.5px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Technical long screen</h1>
+  <p class="sub">
+    Weighted five-signal screen. MA structure is a mandatory gate (no points). High-conviction confirmers
+    &mdash; confirmed breakout and held gap-up &mdash; score 3 each; context signals &mdash; RS leadership and
+    accumulation volume &mdash; score 1 each (max 8). LONG-READY = structure intact plus &ge;3 points, i.e. the
+    gate plus at least one event-driven confirmer. Universe: <b id="uniCount">0</b> names. As of <b id="asof">&mdash;</b>
+  </p>
+
+  <div class="controls">
+    <span><label>EODHD key</label><input type="password" id="key" placeholder="api_token (stays in this browser)"></span>
+    <span><label>or proxy URL</label><input type="text" id="proxy" placeholder="optional — e.g. /api/eod"></span>
+    <span><label>Region</label>
+      <select id="region"><option value="all">All</option><option value="US">US</option><option value="EU">EU</option></select></span>
+    <span><label>Set</label>
+      <select id="book"><option value="all">All</option><option value="universe">Universe</option><option value="book">Book</option></select></span>
+    <label class="chk"><input type="checkbox" id="readyonly"> LONG-READY only</label>
+    <button class="btn" id="run">Run screen</button>
+    <button class="btn sec" id="export" disabled>Export JSON</button>
+  </div>
+
+  <p class="status" id="status">Enter your EODHD key (or a proxy URL) and run the screen. Data is fetched live from your feed &mdash; nothing is hardcoded.</p>
+
+  <p class="reslabel">Screen results &mdash; sorted by score, then stop distance</p>
+  <table>
+    <thead><tr>
+      <th style="width:130px">Ticker</th><th>Name</th><th style="width:46px">Reg</th>
+      <th style="width:120px">Tripwire strip</th><th style="width:80px">Points</th>
+      <th style="width:130px">Status</th>
+      <th class="num" style="width:70px">Close</th><th class="num" style="width:70px">Stop</th><th class="num" style="width:80px">Dist%</th>
+    </tr></thead>
+    <tbody id="rows"><tr><td colspan="9" class="empty">No results yet &mdash; run the screen.</td></tr></tbody>
+  </table>
+
+  <div class="legend">
+    <b>Tripwire strip</b> &mdash; five signals, left to right:
+    <span class="dotk">&#9679;</span> Gate (MA structure, 0 pts) &middot;
+    <span class="dotk">&#9679;</span> Breakout (+3) &middot;
+    <span class="dotk">&#9679;</span> Held gap-up (+3) &middot;
+    <span class="dotk">&#9679;</span> RS leadership (+1) &middot;
+    <span class="dotk">&#9679;</span> Accumulation volume (+1).
+    Filled = signal present. <b>LONG-READY</b> requires the gate open <b>and</b> &ge;3 points.
+    <b>(gated)</b> = confirmers fired but the MA structure hasn't turned up &mdash; held at <i>watch</i>.
+    Stop sits <b>below</b> the close; Dist% is the room to the stop. RS benchmark: SPY.US (US) / EXSA.XETRA (EU).
+    <div class="note" id="secnote">Security: the key you paste stays in this browser tab only and is never stored. For a public deployment, don't ship the key in the page &mdash; point the proxy field at a Cloudflare Pages Function that holds the key server-side.</div>
+  </div>
+</div>
+
+<script>
+const UNIVERSE = {"benchmarks":{"US":"SPY.US","EU":"EXSA.XETRA"},"tickers":[{"t":"AERO.SW","n":"Montana Aerospace","r":"EU","b":"book"},{"t":"EGL.LS","n":"Mota-Engil","r":"EU","b":"book"},{"t":"MTLN.LSE","n":"Metlen Energy & Metals","r":"EU","b":"book"},{"t":"BATS.LSE","n":"British American Tobacco","r":"EU","b":"book"},{"t":"RTO.LSE","n":"Rentokil Initial","r":"EU","b":"book"},{"t":"GAW.LSE","n":"Games Workshop","r":"EU","b":"book"},{"t":"FEVR.LSE","n":"Fevertree Drinks","r":"EU","b":"book"},{"t":"PUM.XETRA","n":"Puma","r":"EU","b":"book"},{"t":"NA9.XETRA","n":"Nagarro","r":"EU","b":"book"},{"t":"FME.XETRA","n":"Fresenius Medical Care","r":"EU","b":"book"},{"t":"OBCK.XETRA","n":"Ottobock","r":"EU","b":"book"},{"t":"AVOL.SW","n":"Avolta","r":"EU","b":"book"},{"t":"CMBN.SW","n":"Cembra Money Bank","r":"EU","b":"book"},{"t":"SIGN.SW","n":"SIG Group","r":"EU","b":"book"},{"t":"SFZN.SW","n":"Siegfried Holding","r":"EU","b":"book"},{"t":"MEL.MC","n":"Melia Hotels","r":"EU","b":"book"},{"t":"VU.PA","n":"VusionGroup","r":"EU","b":"book"},{"t":"ALHG.PA","n":"Louis Hachette Group","r":"EU","b":"book"},{"t":"LTMC.MI","n":"Lottomatica","r":"EU","b":"book"},{"t":"AD.AS","n":"Ahold Delhaize","r":"EU","b":"book"},{"t":"THEON.AS","n":"Theon International","r":"EU","b":"book"},{"t":"ESSITY-B.ST","n":"Essity B","r":"EU","b":"book"},{"t":"LIFCO-B.ST","n":"Lifco B","r":"EU","b":"book"},{"t":"SCA-B.ST","n":"SCA B","r":"EU","b":"book"},{"t":"TKO.US","n":"TKO Group","r":"US","b":"book"},{"t":"TTWO.US","n":"Take-Two Interactive","r":"US","b":"book"},{"t":"HLF.US","n":"Herbalife","r":"US","b":"book"},{"t":"PFGC.US","n":"Performance Food Group","r":"US","b":"book"},{"t":"SFM.US","n":"Sprouts Farmers Market","r":"US","b":"book"},{"t":"FWONK.US","n":"Liberty Formula One","r":"US","b":"book"},{"t":"ARMK.US","n":"Aramark","r":"US","b":"book"},{"t":"AN.US","n":"AutoNation","r":"US","b":"book"},{"t":"ACI.US","n":"Albertsons","r":"US","b":"book"},{"t":"STZ.US","n":"Constellation Brands","r":"US","b":"book"},{"t":"CL.US","n":"Colgate-Palmolive","r":"US","b":"book"},{"t":"NYT.US","n":"New York Times","r":"US","b":"book"},{"t":"SCI.US","n":"Service Corp Intl","r":"US","b":"book"},{"t":"GIS.US","n":"General Mills","r":"US","b":"book"},{"t":"BROS.US","n":"Dutch Bros","r":"US","b":"book"},{"t":"FLO.US","n":"Flowers Foods","r":"US","b":"book"},{"t":"CPRI.US","n":"Capri Holdings","r":"US","b":"book"},{"t":"KYIV.US","n":"Kyivstar Group","r":"US","b":"book"},{"t":"CSG.AS","n":"CSG CONFIRM","r":"EU","b":"book"},{"t":"CDI.PA","n":"Christian Dior Se","r":"EU","b":"universe"},{"t":"SFER.MI","n":"Salvatore Ferragamo Spa","r":"EU","b":"universe"},{"t":"BC.MI","n":"Brunello Cucinelli Spa","r":"EU","b":"universe"},{"t":"BOSS.XETRA","n":"Hugo Boss Ag -Ord","r":"EU","b":"universe"},{"t":"BRBY.LSE","n":"Burberry Group Plc","r":"EU","b":"universe"},{"t":"UHR.SW","n":"Swatch Group Ag/The-Br","r":"EU","b":"universe"},{"t":"PNDORA.CO","n":"Pandora A/S","r":"EU","b":"universe"},{"t":"MONC.MI","n":"Moncler Spa","r":"EU","b":"universe"},{"t":"KER.PA","n":"Kering","r":"EU","b":"universe"},{"t":"ADS.XETRA","n":"Adidas Ag","r":"EU","b":"universe"},{"t":"CFR.SW","n":"Cie Financiere Richemo-A Reg","r":"EU","b":"universe"},{"t":"RMS.PA","n":"Hermes International","r":"EU","b":"universe"},{"t":"MC.PA","n":"Lvmh Moet Hennessy Louis Vui","r":"EU","b":"universe"},{"t":"RACE.MI","n":"Ferrari","r":"EU","b":"universe"},{"t":"THG.LSE","n":"Thg Plc","r":"EU","b":"universe"},{"t":"BME.LSE","n":"B&M European Value Retail Sa","r":"EU","b":"universe"},{"t":"NXT.LSE","n":"Next Plc","r":"EU","b":"universe"},{"t":"PRX.AS","n":"Prosus Nv","r":"EU","b":"universe"},{"t":"CEC.XETRA","n":"Ceconomy Ag","r":"EU","b":"universe"},{"t":"FIE.XETRA","n":"Fielmann Group Ag","r":"EU","b":"universe"},{"t":"CURY.LSE","n":"Currys Plc","r":"EU","b":"universe"},{"t":"FRAS.LSE","n":"Frasers Group Plc","r":"EU","b":"universe"},{"t":"DOU.XETRA","n":"Douglas Ag","r":"EU","b":"universe"},{"t":"WOSG.LSE","n":"Watches Of Switzerland Group","r":"EU","b":"universe"},{"t":"PETS.LSE","n":"Pets At Home Group Plc","r":"EU","b":"universe"},{"t":"AG1.XETRA","n":"Auto1 Group Se","r":"EU","b":"universe"},{"t":"SMWH.LSE","n":"Wh Smith Plc","r":"EU","b":"universe"},{"t":"DNLM.LSE","n":"Dunelm Group Plc","r":"EU","b":"universe"},{"t":"BELA.AT","n":"Jumbo Sa","r":"EU","b":"universe"},{"t":"KGF.LSE","n":"Kingfisher Plc","r":"EU","b":"universe"},{"t":"JD.LSE","n":"Jd Sports Fashion Plc","r":"EU","b":"universe"},{"t":"ZAL.XETRA","n":"Zalando Se","r":"EU","b":"universe"},{"t":"HM-B.ST","n":"Hennes & Mauritz Ab-B Shs","r":"EU","b":"universe"},{"t":"ITX.MC","n":"Industria De Diseno Textil","r":"EU","b":"universe"},{"t":"ROO.LSE","n":"Deliveroo Plc","r":"EU","b":"universe"},{"t":"GRG.LSE","n":"Greggs Plc","r":"EU","b":"universe"},{"t":"OPAP.AT","n":"Opap Sa","r":"EU","b":"universe"},{"t":"CCL.LSE","n":"Carnival Plc","r":"EU","b":"universe"},{"t":"ENT.LSE","n":"Entain Plc","r":"EU","b":"universe"},{"t":"DHER.XETRA","n":"Delivery Hero Se","r":"EU","b":"universe"},{"t":"TKWY.AS","n":"Just Eat Takeaway","r":"EU","b":"universe"},{"t":"FLTR.LSE","n":"Flutter Entertainment Plc-Di","r":"EU","b":"universe"},{"t":"SL.MI","n":"Sanlorenzo Spa/Ameglia","r":"EU","b":"universe"},{"t":"TGYM.MI","n":"Technogym Spa","r":"EU","b":"universe"},{"t":"MIPS.ST","n":"Mips Ab","r":"EU","b":"universe"},{"t":"HEIO.AS","n":"Heineken Holding Nv","r":"EU","b":"universe"},{"t":"RCO.PA","n":"Remy Cointreau","r":"EU","b":"universe"},{"t":"CCH.LSE","n":"Coca-Cola Hbc Ag-Di","r":"EU","b":"universe"},{"t":"CPR.MI","n":"Davide Campari-Milano Nv","r":"EU","b":"universe"},{"t":"CARL-B.CO","n":"Carlsberg As-B","r":"EU","b":"universe"},{"t":"HEIA.AS","n":"Heineken Nv","r":"EU","b":"universe"},{"t":"RI.PA","n":"Pernod Ricard Sa","r":"EU","b":"universe"},{"t":"ABI.BR","n":"Anheuser-Busch Inbev Sa/Nv","r":"EU","b":"universe"},{"t":"DGE.LSE","n":"Diageo Plc","r":"EU","b":"universe"},{"t":"OCDO.LSE","n":"Ocado Group Plc","r":"EU","b":"universe"},{"t":"SBRY.LSE","n":"Sainsbury (J) Plc","r":"EU","b":"universe"},{"t":"HFG.XETRA","n":"Hellofresh Se","r":"EU","b":"universe"},{"t":"JMT.LS","n":"Jeronimo Martins","r":"EU","b":"universe"},{"t":"MKS.LSE","n":"Marks & Spencer Group Plc","r":"EU","b":"universe"},{"t":"CA.PA","n":"Carrefour Sa","r":"EU","b":"universe"},{"t":"TSCO.LSE","n":"Tesco Plc","r":"EU","b":"universe"},{"t":"ARYN.SW","n":"Aryzta Ag","r":"EU","b":"universe"},{"t":"JDEP.AS","n":"Jde Peet'S Nv","r":"EU","b":"universe"},{"t":"LOTB.BR","n":"Lotus Bakeries","r":"EU","b":"universe"},{"t":"AAK.ST","n":"Aak Ab","r":"EU","b":"universe"},{"t":"TATE.LSE","n":"Tate & Lyle Plc","r":"EU","b":"universe"},{"t":"SALM.OL","n":"Salmar Asa","r":"EU","b":"universe"},{"t":"GLB.IR","n":"Glanbia Plc","r":"EU","b":"universe"},{"t":"LISN.SW","n":"Chocoladefabriken Lindt-Reg","r":"EU","b":"universe"},{"t":"ORK.OL","n":"Orkla Asa","r":"EU","b":"universe"},{"t":"BARN.SW","n":"Barry Callebaut Ag-Reg","r":"EU","b":"universe"},{"t":"MOWI.OL","n":"Mowi Asa","r":"EU","b":"universe"},{"t":"ABF.LSE","n":"Associated British Foods Plc","r":"EU","b":"universe"},{"t":"KYGA.IR","n":"Kerry Group Plc-A","r":"EU","b":"universe"},{"t":"BN.PA","n":"Danone","r":"EU","b":"universe"},{"t":"NESN.SW","n":"Nestle Sa-Reg","r":"EU","b":"universe"},{"t":"HEN3.XETRA","n":"Henkel Ag & Co Kgaa Vor-Pref","r":"EU","b":"universe"},{"t":"RKT.LSE","n":"Reckitt Benckiser Group Plc","r":"EU","b":"universe"},{"t":"PUIG.MC","n":"Puig Brands Sa-B","r":"EU","b":"universe"},{"t":"BEI.XETRA","n":"Beiersdorf Ag","r":"EU","b":"universe"},{"t":"HLN.LSE","n":"Haleon Plc","r":"EU","b":"universe"},{"t":"OR.PA","n":"L'Oreal","r":"EU","b":"universe"},{"t":"ULVR.LSE","n":"Unilever Plc","r":"EU","b":"universe"},{"t":"STG.CO","n":"Scandinavian Tobacco Group A","r":"EU","b":"universe"},{"t":"IMB.LSE","n":"Imperial Brands Plc","r":"EU","b":"universe"},{"t":"UBI.PA","n":"Ubisoft Entertainment","r":"EU","b":"universe"},{"t":"EVD.XETRA","n":"Cts Eventim Ag & Co Kgaa","r":"EU","b":"universe"},{"t":"EMBRACB.ST","n":"Embracer Group Ab","r":"EU","b":"universe"},{"t":"UMG.AS","n":"Universal Music Group Nv","r":"EU","b":"universe"},{"t":"BCG.LSE","n":"Baltic Classifieds Group","r":"EU","b":"universe"},{"t":"TRST.LSE","n":"Trustpilot Group Plc","r":"EU","b":"universe"},{"t":"HEM.ST","n":"Hemnet Group Ab","r":"EU","b":"universe"},{"t":"G24.XETRA","n":"Scout24 Se","r":"EU","b":"universe"},{"t":"AUTO.LSE","n":"Auto Trader Group Plc","r":"EU","b":"universe"},{"t":"RMV.LSE","n":"Rightmove Plc","r":"EU","b":"universe"},{"t":"SCHA.OL","n":"Schibsted Asa-Cl A","r":"EU","b":"universe"},{"t":"DDS.US","n":"Dillards Inc-Cl A","r":"US","b":"universe"},{"t":"JWN.US","n":"Nordstrom Inc","r":"US","b":"universe"},{"t":"DOL.TO","n":"Dollarama Inc","r":"US","b":"universe"},{"t":"OLLI.US","n":"Ollie'S Bargain Outlet Holdi","r":"US","b":"universe"},{"t":"M.US","n":"Macy'S Inc","r":"US","b":"universe"},{"t":"KSS.US","n":"Kohls Corp","r":"US","b":"universe"},{"t":"CPNG.US","n":"Coupang Inc","r":"US","b":"universe"},{"t":"EBAY.US","n":"Ebay Inc","r":"US","b":"universe"},{"t":"SCVL.US","n":"Shoe Carnival Inc","r":"US","b":"universe"},{"t":"SAH.US","n":"Sonic Automotive Inc-Class A","r":"US","b":"universe"},{"t":"ATZ.TO","n":"Aritzia Inc-Subordinate Voti","r":"US","b":"universe"},{"t":"BKE.US","n":"Buckle Inc/The","r":"US","b":"universe"},{"t":"GES.US","n":"Guess? Inc","r":"US","b":"universe"},{"t":"SBH.US","n":"Sally Beauty Holdings Inc","r":"US","b":"universe"},{"t":"WRBY.US","n":"Warby Parker Inc-Class A","r":"US","b":"universe"},{"t":"SIG.US","n":"Signet Jewelers Ltd","r":"US","b":"universe"},{"t":"VSCO.US","n":"Victoria'S Secret & Co","r":"US","b":"universe"},{"t":"ASO.US","n":"Academy Sports & Outdoors In","r":"US","b":"universe"},{"t":"URBN.US","n":"Urban Outfitters Inc","r":"US","b":"universe"},{"t":"BOOT.US","n":"Boot Barn Holdings Inc","r":"US","b":"universe"},{"t":"FL.US","n":"Foot Locker Inc","r":"US","b":"universe"},{"t":"AEO.US","n":"American Eagle Outfitters","r":"US","b":"universe"},{"t":"AAP.US","n":"Advance Auto Parts Inc","r":"US","b":"universe"},{"t":"KMX.US","n":"Carmax Inc","r":"US","b":"universe"},{"t":"BBWI.US","n":"Bath & Body Works Inc","r":"US","b":"universe"},{"t":"FIVE.US","n":"Five Below","r":"US","b":"universe"},{"t":"RH.US","n":"Rh","r":"US","b":"universe"},{"t":"GAP.US","n":"Gap Inc/The","r":"US","b":"universe"},{"t":"FND.US","n":"Floor & Decor Holdings Inc-A","r":"US","b":"universe"},{"t":"DKS.US","n":"Dick'S Sporting Goods Inc","r":"US","b":"universe"},{"t":"BURL.US","n":"Burlington Stores Inc","r":"US","b":"universe"},{"t":"TSCO.US","n":"Tractor Supply Company","r":"US","b":"universe"},{"t":"WSM.US","n":"Williams-Sonoma Inc","r":"US","b":"universe"},{"t":"ANF.US","n":"Abercrombie & Fitch Co-Cl A","r":"US","b":"universe"},{"t":"BBY.US","n":"Best Buy Co Inc","r":"US","b":"universe"},{"t":"ROST.US","n":"Ross Stores Inc","r":"US","b":"universe"},{"t":"AZO.US","n":"Autozone Inc","r":"US","b":"universe"},{"t":"ORLY.US","n":"O'Reilly Automotive Inc","r":"US","b":"universe"},{"t":"ULTA.US","n":"Ulta Beauty Inc","r":"US","b":"universe"},{"t":"LOW.US","n":"Lowe'S Cos Inc","r":"US","b":"universe"},{"t":"TJX.US","n":"Tjx Companies Inc","r":"US","b":"universe"},{"t":"HD.US","n":"Home Depot Inc","r":"US","b":"universe"},{"t":"GIII.US","n":"G-Iii Apparel Group Ltd","r":"US","b":"universe"},{"t":"WWW.US","n":"Wolverine World Wide Inc","r":"US","b":"universe"},{"t":"AS.US","n":"Amer Sports Inc","r":"US","b":"universe"},{"t":"OXM.US","n":"Oxford Industries Inc","r":"US","b":"universe"},{"t":"FIGS.US","n":"Figs Inc-Class A","r":"US","b":"universe"},{"t":"SHOO.US","n":"Steven Madden Ltd","r":"US","b":"universe"},{"t":"GIL.TO","n":"Gildan Activewear Inc","r":"US","b":"universe"},{"t":"COLM.US","n":"Columbia Sportswear Co","r":"US","b":"universe"},{"t":"HBI.US","n":"Hanesbrands Inc","r":"US","b":"universe"},{"t":"BIRK.US","n":"Birkenstock Holding Plc","r":"US","b":"universe"},{"t":"PVH.US","n":"Pvh Corp","r":"US","b":"universe"},{"t":"CRI.US","n":"Carter'S Inc","r":"US","b":"universe"},{"t":"UAA.US","n":"Under Armour Inc-Class A","r":"US","b":"universe"},{"t":"TPR.US","n":"Tapestry Inc","r":"US","b":"universe"},{"t":"SKX.US","n":"Skechers Usa Inc-Cl A","r":"US","b":"universe"},{"t":"VFC.US","n":"Vf Corp","r":"US","b":"universe"},{"t":"RL.US","n":"Ralph Lauren Corp","r":"US","b":"universe"},{"t":"CROX.US","n":"Crocs Inc","r":"US","b":"universe"},{"t":"ONON.US","n":"On Holding Ag-Class A","r":"US","b":"universe"},{"t":"DECK.US","n":"Deckers Outdoor Corp","r":"US","b":"universe"},{"t":"LULU.US","n":"Lululemon Athletica Inc","r":"US","b":"universe"},{"t":"NKE.US","n":"Nike Inc -Cl B","r":"US","b":"universe"},{"t":"ARCO.US","n":"Arcos Dorados Holdings Inc-A","r":"US","b":"universe"},{"t":"PZZA.US","n":"Papa John'S Intl Inc","r":"US","b":"universe"},{"t":"WEN.US","n":"Wendy'S Co/The","r":"US","b":"universe"},{"t":"QSR.TO","n":"Restaurant Brands Intern","r":"US","b":"universe"},{"t":"YUMC.US","n":"Yum China Holdings Inc","r":"US","b":"universe"},{"t":"SHAK.US","n":"Shake Shack Inc - Class A","r":"US","b":"universe"},{"t":"TXRH.US","n":"Texas Roadhouse Inc","r":"US","b":"universe"},{"t":"EAT.US","n":"Brinker International Inc","r":"US","b":"universe"},{"t":"WING.US","n":"Wingstop Inc","r":"US","b":"universe"},{"t":"DRI.US","n":"Darden Restaurants Inc","r":"US","b":"universe"},{"t":"YUM.US","n":"Yum! Brands Inc","r":"US","b":"universe"},{"t":"DPZ.US","n":"Domino'S Pizza Inc","r":"US","b":"universe"},{"t":"DKNG.US","n":"Draftkings Inc-Cl A","r":"US","b":"universe"},{"t":"CAVA.US","n":"Cava Group Inc","r":"US","b":"universe"},{"t":"MCD.US","n":"Mcdonald'S Corp","r":"US","b":"universe"},{"t":"CMG.US","n":"Chipotle Mexican Grill Inc","r":"US","b":"universe"},{"t":"SBUX.US","n":"Starbucks Corp","r":"US","b":"universe"},{"t":"MANU.US","n":"Manchester United Plc-Cl A","r":"US","b":"universe"},{"t":"WMG.US","n":"Warner Music Group Corp-Cl A","r":"US","b":"universe"},{"t":"EDR.US","n":"Endeavor Group Hold-Class A","r":"US","b":"universe"},{"t":"EA.US","n":"Electronic Arts Inc","r":"US","b":"universe"},{"t":"MAB.LSE","n":"Mitchells & Butlers Plc","r":"EU","b":"universe"},{"t":"DHG.IR","n":"Dalata Hotel Group Plc","r":"EU","b":"universe"},{"t":"JDW.LSE","n":"Wetherspoon (J.D.) Plc","r":"EU","b":"universe"},{"t":"KINDSDB.ST","n":"Kindred Group Plc","r":"EU","b":"universe"},{"t":"TRN.LSE","n":"Trainline Plc","r":"EU","b":"universe"},{"t":"SHOT.ST","n":"Scandic Hotels Group Ab","r":"EU","b":"universe"},{"t":"BETSB.ST","n":"Betsson Ab-B","r":"EU","b":"universe"},{"t":"BFIT.AS","n":"Basic-Fit Nv","r":"EU","b":"universe"},{"t":"PTEC.LSE","n":"Playtech Plc","r":"EU","b":"universe"},{"t":"DOM.LSE","n":"Domino'S Pizza Group Plc","r":"EU","b":"universe"},{"t":"FDJ.PA","n":"La Francaise Des Jeux Saem","r":"EU","b":"universe"},{"t":"WTB.LSE","n":"Whitbread Plc","r":"EU","b":"universe"},{"t":"TUI1.XETRA","n":"Tui Ag","r":"EU","b":"universe"},{"t":"IHG.LSE","n":"Intercontinental Hotels Grou","r":"EU","b":"universe"},{"t":"AC.PA","n":"Accor Sa","r":"EU","b":"universe"},{"t":"EVO.ST","n":"Evolution Ab","r":"EU","b":"universe"},{"t":"THULE.ST","n":"Thule Group Ab/The","r":"EU","b":"universe"},{"t":"RBREW.CO","n":"Royal Unibrew","r":"EU","b":"universe"},{"t":"CO.PA","n":"Casino Guichard Perrachon","r":"EU","b":"universe"},{"t":"B4B.XETRA","n":"Metro Ag","r":"EU","b":"universe"},{"t":"COLR.BR","n":"Colruyt Group N.V","r":"EU","b":"universe"},{"t":"AXFO.ST","n":"Axfood Ab","r":"EU","b":"universe"},{"t":"RDC.XETRA","n":"Redcare Pharmacy Nv","r":"EU","b":"universe"},{"t":"BAKK.LSE","n":"Bakkavor Group Plc","r":"EU","b":"universe"},{"t":"EBRO.MC","n":"Ebro Foods Sa","r":"EU","b":"universe"},{"t":"SZU.XETRA","n":"Suedzucker Ag","r":"EU","b":"universe"},{"t":"PFD.LSE","n":"Premier Foods Plc","r":"EU","b":"universe"},{"t":"LSG.OL","n":"Leroy Seafood Group Asa","r":"EU","b":"universe"},{"t":"HFG.LSE","n":"Hilton Food Group Plc","r":"EU","b":"universe"},{"t":"BAKKA.OL","n":"Bakkafrost P/F","r":"EU","b":"universe"},{"t":"PDX.ST","n":"Paradox Interactive Ab","r":"EU","b":"universe"},{"t":"JUVE.MI","n":"Juventus Football Club Spa","r":"EU","b":"universe"},{"t":"PSM.XETRA","n":"Prosiebensat.1 Media Se","r":"EU","b":"universe"},{"t":"DEC.PA","n":"Jcdecaux Se","r":"EU","b":"universe"},{"t":"SAX.XETRA","n":"Stroeer Se & Co Kgaa","r":"EU","b":"universe"},{"t":"FUTR.LSE","n":"Future Plc","r":"EU","b":"universe"},{"t":"ITV.LSE","n":"Itv Plc","r":"EU","b":"universe"},{"t":"WPP.LSE","n":"Wpp Plc","r":"EU","b":"universe"},{"t":"INF.LSE","n":"Informa Plc","r":"EU","b":"universe"},{"t":"VIV.PA","n":"Vivendi Se","r":"EU","b":"universe"},{"t":"PUB.PA","n":"Publicis Groupe","r":"EU","b":"universe"},{"t":"BB.PA","n":"Societe Bic Sa","r":"EU","b":"universe"},{"t":"HWDN.LSE","n":"Howden Joinery Group Plc","r":"EU","b":"universe"},{"t":"BNZL.LSE","n":"Bunzl Plc","r":"EU","b":"universe"},{"t":"BTA.LSE","n":"Bt Group Plc","r":"EU","b":"universe"},{"t":"NOS.LS","n":"Nos Sgps","r":"EU","b":"universe"},{"t":"KPN.AS","n":"Koninklijke Kpn Nv","r":"EU","b":"universe"},{"t":"PSON.LSE","n":"Pearson Plc","r":"EU","b":"universe"},{"t":"DOM.ST","n":"Dometic Group Ab","r":"EU","b":"universe"},{"t":"BRE.MI","n":"Brembo N.V.","r":"EU","b":"universe"},{"t":"TYRES.HE","n":"Nokian Renkaat Oyj","r":"EU","b":"universe"},{"t":"PIRC.MI","n":"Pirelli & C Spa","r":"EU","b":"universe"},{"t":"ML.PA","n":"Michelin (Cgde)","r":"EU","b":"universe"},{"t":"INCH.LSE","n":"Inchcape Plc","r":"EU","b":"universe"},{"t":"DIE.BR","n":"D'Ieteren Group","r":"EU","b":"universe"},{"t":"CRN.LSE","n":"Cairn Homes Plc","r":"EU","b":"universe"},{"t":"DLG.MI","n":"De'Longhi Spa","r":"EU","b":"universe"},{"t":"SK.PA","n":"Seb Sa","r":"EU","b":"universe"},{"t":"VTY.LSE","n":"Vistry Group Plc","r":"EU","b":"universe"},{"t":"ELUXB.ST","n":"Electrolux Ab-B","r":"EU","b":"universe"},{"t":"SVV.US","n":"Savers Value Village Inc","r":"US","b":"universe"},{"t":"VIPS.US","n":"Vipshop Holdings Ltd - Adr","r":"US","b":"universe"},{"t":"ETSY.US","n":"Etsy Inc","r":"US","b":"universe"},{"t":"PDD.US","n":"Pdd Holdings Inc","r":"US","b":"universe"},{"t":"AMZN.US","n":"Amazon.Com Inc","r":"US","b":"universe"},{"t":"CWH.US","n":"Camping World Holdings Inc-A","r":"US","b":"universe"},{"t":"RVLV.US","n":"Revolve Group Inc","r":"US","b":"universe"},{"t":"PAG.US","n":"Penske Automotive Group Inc","r":"US","b":"universe"},{"t":"ABG.US","n":"Asbury Automotive Group","r":"US","b":"universe"},{"t":"GPI.US","n":"Group 1 Automotive Inc","r":"US","b":"universe"},{"t":"GME.US","n":"Gamestop Corp-Class A","r":"US","b":"universe"},{"t":"BOWL.US","n":"Bowlero Corp - Class A","r":"US","b":"universe"},{"t":"PLYA.US","n":"Playa Hotels & Resorts Nv","r":"US","b":"universe"},{"t":"MCRI.US","n":"Monarch Casino & Resort Inc","r":"US","b":"universe"},{"t":"DNUT.US","n":"Krispy Kreme Inc","r":"US","b":"universe"},{"t":"MLCO.US","n":"Melco Resorts & Entert-Adr","r":"US","b":"universe"},{"t":"PLAY.US","n":"Dave & Buster'S Entertainmen","r":"US","b":"universe"},{"t":"IGT.US","n":"International Game Technolog","r":"US","b":"universe"},{"t":"BLMN.US","n":"Bloomin' Brands Inc","r":"US","b":"universe"},{"t":"RRR.US","n":"Red Rock Resorts Inc-Class A","r":"US","b":"universe"},{"t":"LKNCY.US","n":"Luckin Coffee Inc - Adr","r":"US","b":"universe"},{"t":"CAKE.US","n":"Cheesecake Factory Inc/The","r":"US","b":"universe"},{"t":"CHDN.US","n":"Churchill Downs Inc","r":"US","b":"universe"},{"t":"LTH.US","n":"Life Time Group Holdings Inc","r":"US","b":"universe"},{"t":"CHH.US","n":"Choice Hotels Intl Inc","r":"US","b":"universe"},{"t":"BYD.US","n":"Boyd Gaming Corp","r":"US","b":"universe"},{"t":"PRKS.US","n":"United Parks & Resorts Inc","r":"US","b":"universe"},{"t":"WH.US","n":"Wyndham Hotels & Resorts Inc","r":"US","b":"universe"},{"t":"MTN.US","n":"Vail Resorts Inc","r":"US","b":"universe"},{"t":"PENN.US","n":"Penn Entertainment Inc","r":"US","b":"universe"},{"t":"FUN.US","n":"Six Flags Entertainment Corp","r":"US","b":"universe"},{"t":"PLNT.US","n":"Planet Fitness Inc - Cl A","r":"US","b":"universe"},{"t":"TCOM.US","n":"Trip.Com Group Ltd-Adr","r":"US","b":"universe"},{"t":"MGM.US","n":"Mgm Resorts International","r":"US","b":"universe"},{"t":"WYNN.US","n":"Wynn Resorts Ltd","r":"US","b":"universe"},{"t":"CZR.US","n":"Caesars Entertainment Inc","r":"US","b":"universe"},{"t":"NCLH.US","n":"Norwegian Cruise Line Holdin","r":"US","b":"universe"},{"t":"LVS.US","n":"Las Vegas Sands Corp","r":"US","b":"universe"},{"t":"EXPE.US","n":"Expedia Group Inc","r":"US","b":"universe"},{"t":"HLT.US","n":"Hilton Worldwide Holdings In","r":"US","b":"universe"},{"t":"MAR.US","n":"Marriott International -Cl A","r":"US","b":"universe"},{"t":"CCL.US","n":"Carnival Corp","r":"US","b":"universe"},{"t":"RCL.US","n":"Royal Caribbean Cruises Ltd","r":"US","b":"universe"},{"t":"DASH.US","n":"Doordash Inc - A","r":"US","b":"universe"},{"t":"ABNB.US","n":"Airbnb Inc-Class A","r":"US","b":"universe"},{"t":"BKNG.US","n":"Booking Holdings Inc","r":"US","b":"universe"},{"t":"LEG.US","n":"Leggett & Platt Inc","r":"US","b":"universe"},{"t":"LZB.US","n":"La-Z-Boy Inc","r":"US","b":"universe"},{"t":"CVCO.US","n":"Cavco Industries Inc","r":"US","b":"universe"},{"t":"HELE.US","n":"Helen Of Troy Ltd","r":"US","b":"universe"},{"t":"NWL.US","n":"Newell Brands Inc","r":"US","b":"universe"},{"t":"TPX.US","n":"Tempur Sealy International I","r":"US","b":"universe"},{"t":"WHR.US","n":"Whirlpool Corp","r":"US","b":"universe"},{"t":"MHK.US","n":"Mohawk Industries Inc","r":"US","b":"universe"},{"t":"SN.US","n":"Sharkninja Inc","r":"US","b":"universe"},{"t":"NVR.US","n":"Nvr Inc","r":"US","b":"universe"},{"t":"GOLF.US","n":"Acushnet Holdings Corp","r":"US","b":"universe"},{"t":"VSTO.US","n":"Vista Outdoor Inc","r":"US","b":"universe"},{"t":"MODG.US","n":"Topgolf Callaway Brands Corp","r":"US","b":"universe"},{"t":"MAT.US","n":"Mattel Inc","r":"US","b":"universe"},{"t":"BC.US","n":"Brunswick Corp","r":"US","b":"universe"},{"t":"YETI.US","n":"Yeti Holdings Inc","r":"US","b":"universe"},{"t":"PII.US","n":"Polaris Inc","r":"US","b":"universe"},{"t":"PTON.US","n":"Peloton Interactive Inc-A","r":"US","b":"universe"},{"t":"HAS.US","n":"Hasbro Inc","r":"US","b":"universe"},{"t":"LGFA.US","n":"Lions Gate Entertainment-A","r":"US","b":"universe"},{"t":"MSGE.US","n":"Madison Square Garden Entert","r":"US","b":"universe"},{"t":"MSGS.US","n":"Madison Square Garden Sports","r":"US","b":"universe"},{"t":"SPHR.US","n":"Sphere Entertainment Co","r":"US","b":"universe"},{"t":"AMC.US","n":"Amc Entertainment Hlds-Cl A","r":"US","b":"universe"},{"t":"CNK.US","n":"Cinemark Holdings Inc","r":"US","b":"universe"},{"t":"LYV.US","n":"Live Nation Entertainment In","r":"US","b":"universe"},{"t":"SE.US","n":"Sea Ltd-Adr","r":"US","b":"universe"},{"t":"SPOT.US","n":"Spotify Technology Sa","r":"US","b":"universe"},{"t":"DIS.US","n":"Walt Disney Co/The","r":"US","b":"universe"},{"t":"NFLX.US","n":"Netflix Inc","r":"US","b":"universe"},{"t":"SSTK.US","n":"Shutterstock Inc","r":"US","b":"universe"},{"t":"IAC.US","n":"Iac Inc","r":"US","b":"universe"},{"t":"TRIP.US","n":"Tripadvisor Inc","r":"US","b":"universe"},{"t":"BMBL.US","n":"Bumble Inc-A","r":"US","b":"universe"},{"t":"MTCH.US","n":"Match Group Inc","r":"US","b":"universe"},{"t":"SNAP.US","n":"Snap Inc - A","r":"US","b":"universe"},{"t":"PINS.US","n":"Pinterest Inc- Class A","r":"US","b":"universe"},{"t":"CRTO.US","n":"Criteo Sa-Spon Adr","r":"US","b":"universe"},{"t":"TTD.US","n":"Trade Desk Inc/The -Class A","r":"US","b":"universe"},{"t":"GT.US","n":"Goodyear Tire & Rubber Co","r":"US","b":"universe"},{"t":"WGO.US","n":"Winnebago Industries","r":"US","b":"universe"},{"t":"THO.US","n":"Thor Industries Inc","r":"US","b":"universe"},{"t":"HOG.US","n":"Harley-Davidson Inc","r":"US","b":"universe"},{"t":"POOL.US","n":"Pool Corp","r":"US","b":"universe"},{"t":"OSW.US","n":"Onespaworld Holdings Ltd","r":"US","b":"universe"},{"t":"UPBD.US","n":"Upbound Group Inc","r":"US","b":"universe"},{"t":"ARHS.US","n":"Arhaus Inc","r":"US","b":"universe"},{"t":"CAL.US","n":"Caleres Inc","r":"US","b":"universe"},{"t":"VVV.US","n":"Valvoline Inc","r":"US","b":"universe"},{"t":"LAD.US","n":"Lithia Motors Inc","r":"US","b":"universe"},{"t":"CHWY.US","n":"Chewy Inc - Class A","r":"US","b":"universe"},{"t":"W.US","n":"Wayfair Inc- Class A","r":"US","b":"universe"},{"t":"CVNA.US","n":"Carvana Co","r":"US","b":"universe"},{"t":"LEVI.US","n":"Levi Strauss & Co- Class A","r":"US","b":"universe"},{"t":"KTB.US","n":"Kontoor Brands Inc","r":"US","b":"universe"},{"t":"RSI.US","n":"Rush Street Interactive Inc","r":"US","b":"universe"},{"t":"GENI.US","n":"Genius Sports Ltd","r":"US","b":"universe"},{"t":"TNL.US","n":"Travel + Leisure Co","r":"US","b":"universe"},{"t":"VAC.US","n":"Marriott Vacations World","r":"US","b":"universe"},{"t":"HGV.US","n":"Hilton Grand Vacations Inc","r":"US","b":"universe"},{"t":"VIK.US","n":"Viking Holdings Ltd","r":"US","b":"universe"},{"t":"MMYT.US","n":"Makemytrip Ltd","r":"US","b":"universe"},{"t":"LNW.US","n":"Light & Wonder Inc","r":"US","b":"universe"},{"t":"H.US","n":"Hyatt Hotels Corp - Cl A","r":"US","b":"universe"},{"t":"SG.US","n":"Sweetgreen Inc - Class A","r":"US","b":"universe"},{"t":"WBD.US","n":"Warner Bros Discovery Inc","r":"US","b":"universe"},{"t":"RBLX.US","n":"Roblox Corp -Class A","r":"US","b":"universe"},{"t":"CARG.US","n":"Cargurus Inc","r":"US","b":"universe"},{"t":"YELP.US","n":"Yelp Inc","r":"US","b":"universe"},{"t":"NWSA.US","n":"News Corp - Class A","r":"US","b":"universe"},{"t":"FOXA.US","n":"Fox Corp - Class A","r":"US","b":"universe"},{"t":"PARA.US","n":"Paramount Global-Class B","r":"US","b":"universe"},{"t":"IPG.US","n":"Interpublic Group Of Cos Inc","r":"US","b":"universe"},{"t":"OMC.US","n":"Omnicom Group","r":"US","b":"universe"},{"t":"GPC.US","n":"Genuine Parts Co","r":"US","b":"universe"}]};
+document.getElementById('uniCount').textContent = UNIVERSE.tickers.length;
+
+const CFG = {lookbackDays:320,slopeWindow:10,breakoutLookback:60,breakoutExclude:5,breakoutVolMult:1.2,
+  gapScan:30,gapThreshold:0.03,rsWindow:20,rsThreshold:6.0,accumWindow:20,accumRatio:1.1,wideStopPct:10.0,concurrency:8};
+
+function sma(v,p,end){if(end+1<p)return NaN;let s=0;for(let i=end-p+1;i<=end;i++)s+=v[i];return s/p;}
+function slopePct(v,p,end,win){const a=sma(v,p,end),b=sma(v,p,end-win);if(!isFinite(a)||!isFinite(b)||b===0)return NaN;return (a-b)/b*100;}
+function f2(x){return Math.abs(x)>=100?x.toFixed(0):x.toFixed(2);}
+
+function scoreLong(t,c,bench){
+  if(c.length<210)return null;
+  const close=c.map(x=>x.close),high=c.map(x=>x.high),vol=c.map(x=>x.volume);
+  const n=c.length-1,last=close[n];
+  const sma50=sma(close,50,n),sma200=sma(close,200,n);
+  const slope50=slopePct(close,50,n,CFG.slopeWindow),slope200=slopePct(close,200,n,CFG.slopeWindow);
+  const gate=last>sma50&&slope50>0&&slope200>=-0.10;
+  const hStart=Math.max(0,n-CFG.breakoutLookback-CFG.breakoutExclude),hEnd=n-CFG.breakoutExclude;
+  let priorHigh=-Infinity;for(let i=hStart;i<=hEnd;i++)priorHigh=Math.max(priorHigh,high[i]);
+  const avgVol60=sma(vol,60,n);
+  let bDayVol=0;for(let i=n-CFG.breakoutExclude;i<=n;i++)bDayVol=Math.max(bDayVol,vol[i]);
+  const aboveHigh=last>priorHigh;
+  const volConfirm=isFinite(avgVol60)&&avgVol60>0&&bDayVol>=CFG.breakoutVolMult*avgVol60;
+  const breakout=aboveHigh&&volConfirm,breakoutLevel=priorHigh;
+  const bVolX=(isFinite(avgVol60)&&avgVol60>0)?bDayVol/avgVol60:0;
+  let gapHeld=false,gapPct=0,gapBase=0,gapDate="";
+  for(let i=n;i>=Math.max(1,n-CFG.gapScan);i--){
+    const g=(c[i].open-close[i-1])/close[i-1];
+    if(g>=CFG.gapThreshold){const base=close[i-1];let held=true;for(let j=i;j<=n;j++)if(close[j]<base){held=false;break;}
+      if(held){gapHeld=true;gapPct=g*100;gapBase=base;gapDate=c[i].date;break;}}}
+  const ret=(last/close[n-CFG.rsWindow]-1)*100;
+  const bn=bench.length-1;
+  const bret=bench.length>CFG.rsWindow?(bench[bn].close/bench[bn-CFG.rsWindow].close-1)*100:0;
+  const rsSpread=ret-bret,rsLead=rsSpread>=CFG.rsThreshold;
+  let upV=0,dnV=0;
+  for(let i=n-CFG.accumWindow+1;i<=n;i++){if(close[i]>close[i-1])upV+=vol[i];else if(close[i]<close[i-1])dnV+=vol[i];}
+  const accRatio=dnV>0?upV/dnV:0,accum=accRatio>=CFG.accumRatio;
+  const points=(breakout?3:0)+(gapHeld?3:0)+(rsLead?1:0)+(accum?1:0);
+  const longReady=gate&&points>=3;
+  const supports=[];
+  if(breakout&&breakoutLevel<last)supports.push(breakoutLevel);
+  if(gapHeld&&gapBase<last)supports.push(gapBase);
+  if(gate&&sma50<last)supports.push(sma50);
+  const stop=supports.length?Math.max(...supports):last*0.9;
+  const distPct=(last-stop)/last*100,wide=distPct>CFG.wideStopPct;
+  const drivers=[
+    {key:"breakout",fired:breakout,weight:3,text:breakout
+      ?`Cleared the prior high of ${f2(breakoutLevel)} and is holding above it, on volume ${bVolX.toFixed(2)}\u00d7 the 60-day average. High-conviction confirmer \u2014 demand overwhelmed supply where supply sat, and it hands you a stop level.`
+      :aboveHigh?`Above the prior high of ${f2(breakoutLevel)} but the move came on light volume (${bVolX.toFixed(2)}\u00d7 average) \u2014 not a confirmed breakout.`
+      :`Trading below the prior high of ${f2(breakoutLevel)} \u2014 no breakout yet.`},
+    {key:"gate",fired:gate,weight:0,text:gate
+      ?`Price ${f2(last)} is above a rising 50-day average (${f2(sma50)}, sloping ${slope50.toFixed(2)}% over 10 days), with the 200-day flat-to-up. The trend has turned. Required for any long \u2014 earns no points itself, it unlocks the rest.`
+      :`Structure not yet confirmed \u2014 price vs 50-day (${f2(sma50)}, slope ${isFinite(slope50)?slope50.toFixed(2):"n/a"}%) and 200-day (slope ${isFinite(slope200)?slope200.toFixed(2):"n/a"}%) haven't turned up. Gates the name to watch.`},
+    {key:"rs",fired:rsLead,weight:1,text:rsLead
+      ?`Outperformed its benchmark by +${rsSpread.toFixed(1)}% over 20 days, making higher relative highs. Context signal \u2014 raises conviction but doesn't time the entry on its own.`
+      :`Relative strength ${rsSpread>=0?"+":""}${rsSpread.toFixed(1)}% over 20 days \u2014 below the +${CFG.rsThreshold}% leadership threshold.`},
+    {key:"accum",fired:accum,weight:1,text:accum
+      ?`Up-day volume is running ${accRatio.toFixed(2)}\u00d7 down-day volume over 20 sessions. Context signal \u2014 confirms buying pressure but not where to act.`
+      :`Up/down-day volume balanced at ${accRatio.toFixed(2)}\u00d7 over 20 sessions \u2014 no accumulation edge yet.`},
+    {key:"gap",fired:gapHeld,weight:3,text:gapHeld
+      ?`Gapped +${gapPct.toFixed(1)}% on ${gapDate} and has never closed back below the gap base of ${f2(gapBase)} (currently +${(((last-gapBase)/gapBase)*100).toFixed(1)}% above it). High-conviction confirmer \u2014 marks the day the holder base changed and sellers stepped away.`
+      :`No held gap-up on the tape in the last ${CFG.gapScan} sessions.`},
+  ];
+  const verdict=longReady
+    ?`LONG-READY \u2014 ${points}/8 points, structure intact plus ${(breakout&&gapHeld)?"two high-conviction confirmers":"a high-conviction confirmer"}. Stop is ${wide?"a wide":"a workable"} ${distPct.toFixed(1)}% away at ${f2(stop)}.${wide?" Wider than ideal \u2014 wait for a pullback to the rising 15-day to tighten it.":" Actionable timing window."}`
+    :`WATCH${gate?"":" (gated)"} \u2014 ${points}/8 on the confirmers${gate?"":", but the MA structure hasn't turned up"}. ${gate?"Below the 3-point bar \u2014 needs another confirmer to fire.":"Flips to LONG-READY once the 50-day starts rising with the points in place."}`;
+  return {ticker:t.t,name:t.n,region:t.r,book:t.b,strip:[gate,breakout,gapHeld,rsLead,accum],
+    points,status:longReady?"LONG-READY":"watch",gated:!gate,
+    close:+last.toFixed(2),stop:+stop.toFixed(2),distPct:+distPct.toFixed(1),wide,
+    lastDate:c[n].date,drivers,verdict};
+}
+
+function endpoint(ticker){
+  const proxy=document.getElementById('proxy').value.trim();
+  const key=document.getElementById('key').value.trim();
+  const from=new Date(Date.now()-CFG.lookbackDays*1.6*86400000).toISOString().slice(0,10);
+  if(proxy) return `${proxy.replace(/\/$/,'')}/${encodeURIComponent(ticker)}?from=${from}`;
+  return `https://eodhd.com/api/eod/${encodeURIComponent(ticker)}?from=${from}&period=d&fmt=json&api_token=${encodeURIComponent(key)}`;
+}
+async function fetchDaily(ticker){
+  const r=await fetch(endpoint(ticker));
+  if(!r.ok) throw new Error(ticker+' '+r.status);
+  const raw=await r.json();
+  return raw.map(x=>({date:x.date,open:x.open,high:x.high,low:x.low,close:(x.adjusted_close??x.close),volume:x.volume}))
+            .filter(x=>isFinite(x.close)&&isFinite(x.volume));
+}
+
+let RESULTS=[];
+async function run(){
+  const key=document.getElementById('key').value.trim();
+  const proxy=document.getElementById('proxy').value.trim();
+  const st=document.getElementById('status');
+  if(!key&&!proxy){st.innerHTML='<span class="err">Enter an EODHD key or a proxy URL first.</span>';return;}
+  document.getElementById('run').disabled=true;document.getElementById('export').disabled=true;
+  RESULTS=[];let done=0,errs=0;
+  // benchmarks
+  st.textContent='Fetching benchmarks\u2026';
+  const bench={};
+  for(const [reg,bt] of Object.entries(UNIVERSE.benchmarks)){
+    try{bench[reg]=await fetchDaily(bt);}catch(e){bench[reg]=[];errs++;}
+  }
+  const queue=[...UNIVERSE.tickers];const total=queue.length;
+  async function worker(){
+    while(queue.length){
+      const t=queue.shift();
+      try{const c=await fetchDaily(t.t);const row=scoreLong(t,c,bench[t.r]||[]);if(row)RESULTS.push(row);}
+      catch(e){errs++;}
+      done++;
+      if(done%10===0||done===total) st.innerHTML=`Scanning <b>${done}</b> / ${total}\u2026 ${errs?`(${errs} skipped)`:''}`;
+    }
+  }
+  await Promise.all(Array.from({length:CFG.concurrency},worker));
+  RESULTS.sort((a,b)=>b.points-a.points||a.distPct-b.distPct);
+  const asof=RESULTS.reduce((m,r)=>r.lastDate>m?r.lastDate:m,'');
+  document.getElementById('asof').textContent=asof||'\u2014';
+  const ready=RESULTS.filter(r=>r.status==='LONG-READY').length;
+  st.innerHTML=`Scanned <b>${RESULTS.length}</b> names \u2014 <b>${ready}</b> LONG-READY${errs?` \u00b7 ${errs} skipped (no data / vendor limit)`:''}.`;
+  document.getElementById('run').disabled=false;document.getElementById('export').disabled=false;
+  render();
+}
+
+function render(){
+  const reg=document.getElementById('region').value;
+  const book=document.getElementById('book').value;
+  const readyOnly=document.getElementById('readyonly').checked;
+  let rows=RESULTS.filter(r=>(reg==='all'||r.region===reg)&&(book==='all'||r.book===book)&&(!readyOnly||r.status==='LONG-READY'));
+  const tb=document.getElementById('rows');
+  if(!rows.length){tb.innerHTML='<tr><td colspan="9" class="empty">No names match the current filters.</td></tr>';return;}
+  const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  let html='';
+  rows.forEach((r,idx)=>{
+    const strip=r.strip.map(on=>on?'<span class="on">&#9679;</span>':'<span class="off">&#9675;</span>').join('');
+    const statusCell=r.status==='LONG-READY'
+      ?'<span class="badge">Long-ready</span>'
+      :'<span class="watch">watch</span>';
+    const ptsCell=`${r.points}/8`+(r.gated?' <span class="gated">(gated)</span>':'');
+    const distCell=`${r.distPct}`+(r.wide?' <span class="widenote">(wide \u2014 wait)</span>':'');
+    html+=`<tr class="${r.status==='LONG-READY'?'row-ready':''}">
+      <td class="ticker">${esc(r.ticker)}</td><td>${esc(r.name)}</td><td class="reg">${r.region}</td>
+      <td><span class="strip">${strip}</span></td><td class="points">${ptsCell}</td><td>${statusCell}</td>
+      <td class="num">${r.close}</td><td class="num">${r.stop}</td><td class="num">${distCell}</td></tr>`;
+    const drv=r.drivers.map(d=>{
+      const mark=d.fired?'<span class="tick">&check;</span>':'<span class="miss">&times;</span>';
+      const plus=d.fired&&d.weight>0?`<span class="plus">+${d.weight}</span>`:'';
+      const label={breakout:'Confirmed breakout.',gate:(d.fired?'Structure intact \u2014 the gate.':'Structure not yet confirmed \u2014 the gate.'),rs:'Relative strength leading.',accum:'Accumulation volume.',gap:'Held gap-up.'}[d.key];
+      return `<p class="drv${d.fired?'':' dim'}">${mark}<b>${label}</b>${plus} ${esc(d.text)}</p>`;
+    }).join('');
+    html+=`<tr class="drv-row"><td colspan="9">
+      <span class="drv-toggle" onclick="tog(this)"><span class="caret">${idx===0?'&#9660;':'&#9654;'}</span> what's driving this rating</span>
+      <div class="drv-box${idx===0?' open':''}">${drv}<p class="verdict"><b>Verdict:</b> ${esc(r.verdict)}</p></div></td></tr>`;
+  });
+  tb.innerHTML=html;
+}
+function tog(el){
+  const box=el.parentElement.querySelector('.drv-box');
+  const caret=el.querySelector('.caret');
+  const open=box.classList.toggle('open');
+  caret.innerHTML=open?'&#9660;':'&#9654;';
+}
+function exportJson(){
+  const blob=new Blob([JSON.stringify(RESULTS,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download='long-screen-results.json';a.click();
+}
+document.getElementById('run').addEventListener('click',run);
+document.getElementById('export').addEventListener('click',exportJson);
+['region','book','readyonly'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{if(RESULTS.length)render();}));
+</script>
+</body>
+</html>
