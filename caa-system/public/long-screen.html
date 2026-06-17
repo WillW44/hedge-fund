@@ -87,8 +87,8 @@
   </p>
 
   <div class="controls">
-    <span><label>EODHD key</label><input type="password" id="key" placeholder="api_token (stays in this browser)"></span>
-    <span><label>or proxy URL</label><input type="text" id="proxy" placeholder="optional — e.g. /api/eod"></span>
+    <span><label>EODHD key</label><input type="password" id="key" placeholder="not needed — server proxy holds it"></span>
+    <span><label>proxy URL</label><input type="text" id="proxy" value="/api/eod" placeholder="/api/eod"></span>
     <span><label>Region</label>
       <select id="region"><option value="all">All</option><option value="US">US</option><option value="EU">EU</option></select></span>
     <span><label>Set</label>
@@ -98,7 +98,7 @@
     <button class="btn sec" id="export" disabled>Export JSON</button>
   </div>
 
-  <p class="status" id="status">Enter your EODHD key (or a proxy URL) and run the screen. Data is fetched live from your feed &mdash; nothing is hardcoded.</p>
+  <p class="status" id="status">Ready. Click <b>Run screen</b> to scan all names live through the server proxy &mdash; no key needed in the page.</p>
 
   <p class="reslabel">Screen results &mdash; sorted by score, then stop distance</p>
   <table>
@@ -121,7 +121,7 @@
     Filled = signal present. <b>LONG-READY</b> requires the gate open <b>and</b> &ge;3 points.
     <b>(gated)</b> = confirmers fired but the MA structure hasn't turned up &mdash; held at <i>watch</i>.
     Stop sits <b>below</b> the close; Dist% is the room to the stop. RS benchmark: SPY.US (US) / EXSA.XETRA (EU).
-    <div class="note" id="secnote">Security: the key you paste stays in this browser tab only and is never stored. For a public deployment, don't ship the key in the page &mdash; point the proxy field at a Cloudflare Pages Function that holds the key server-side.</div>
+    <div class="note" id="secnote">Security: this page carries no API key. It calls /api/eod on your own server, which holds the EODHD key in Cloudflare environment variables and forwards the request. The key field above is only for local/direct testing.</div>
   </div>
 </div>
 
@@ -202,7 +202,7 @@ function endpoint(ticker){
   const proxy=document.getElementById('proxy').value.trim();
   const key=document.getElementById('key').value.trim();
   const from=new Date(Date.now()-CFG.lookbackDays*1.6*86400000).toISOString().slice(0,10);
-  if(proxy) return `${proxy.replace(/\/$/,'')}/${encodeURIComponent(ticker)}?from=${from}`;
+  if(proxy) return `${proxy.replace(/\/$/,'')}?ticker=${encodeURIComponent(ticker)}&from=${from}`;
   return `https://eodhd.com/api/eod/${encodeURIComponent(ticker)}?from=${from}&period=d&fmt=json&api_token=${encodeURIComponent(key)}`;
 }
 async function fetchDaily(ticker){
