@@ -43,6 +43,8 @@
   thead th{text-align:left;font-weight:400;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
     color:var(--muted);padding:8px 10px;border-bottom:1px solid var(--line);}
   th.num,td.num{text-align:right;}
+  th.sortable{cursor:pointer;} th.sortable:hover{color:var(--accent-deep);}
+  .arr{font-size:9px;color:var(--accent);margin-left:4px;}
   tbody td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle;}
   .row-ready{background:var(--tintrow);}
   .ticker{font-weight:700;font-size:14.5px;}
@@ -103,16 +105,21 @@
   <p class="reslabel">Screen results &mdash; sorted by score, then stop distance</p>
   <table>
     <thead><tr>
-      <th style="width:130px">Ticker</th><th>Name</th><th style="width:46px">Reg</th>
-      <th style="width:120px">Tripwire strip</th><th style="width:80px">Points</th>
-      <th style="width:130px">Status</th>
-      <th class="num" style="width:70px">Close</th><th class="num" style="width:70px">Stop</th><th class="num" style="width:80px">Dist%</th>
+      <th class="sortable" data-sort="ticker" style="width:130px">Ticker<span class="arr"></span></th>
+      <th class="sortable" data-sort="name">Name<span class="arr"></span></th>
+      <th class="sortable" data-sort="region" style="width:46px">Reg<span class="arr"></span></th>
+      <th style="width:120px">Champagne strip</th>
+      <th class="sortable" data-sort="points" style="width:80px">Points<span class="arr"></span></th>
+      <th class="sortable" data-sort="status" style="width:130px">Status<span class="arr"></span></th>
+      <th class="sortable num" data-sort="close" style="width:70px">Close<span class="arr"></span></th>
+      <th class="sortable num" data-sort="stop" style="width:70px">Stop<span class="arr"></span></th>
+      <th class="sortable num" data-sort="distPct" style="width:80px">Dist%<span class="arr"></span></th>
     </tr></thead>
     <tbody id="rows"><tr><td colspan="9" class="empty">No results yet &mdash; run the screen.</td></tr></tbody>
   </table>
 
   <div class="legend">
-    <b>Tripwire strip</b> &mdash; five signals, left to right:
+    <b>Champagne strip</b> &mdash; five signals, left to right:
     <span class="dotk">&#9679;</span> Gate (MA structure, 0 pts) &middot;
     <span class="dotk">&#9679;</span> Breakout (+3) &middot;
     <span class="dotk">&#9679;</span> Held gap-up (+3) &middot;
@@ -247,11 +254,34 @@ async function run(){
   render();
 }
 
+const defaultDir={ticker:"asc",name:"asc",region:"asc",points:"desc",status:"asc",close:"desc",stop:"desc",distPct:"asc"};
+let sortState={key:"points",dir:"desc"};
+function cmp(a,b,key){
+  if(key==="status"){const rank=s=>s==="LONG-READY"?0:1;return rank(a.status)-rank(b.status);}
+  if(typeof a[key]==="number")return a[key]-b[key];
+  return String(a[key]).localeCompare(String(b[key]));
+}
+function sortRows(rows){
+  const sign=sortState.dir==="asc"?1:-1;
+  return [...rows].sort((a,b)=>{
+    const r=cmp(a,b,sortState.key)*sign;
+    if(r!==0)return r;
+    return (b.points-a.points)||(a.distPct-b.distPct);   // natural tiebreak
+  });
+}
+function updateArrows(){
+  document.querySelectorAll("th.sortable").forEach(th=>{
+    const a=th.querySelector(".arr");
+    a.textContent = th.dataset.sort===sortState.key ? (sortState.dir==="asc"?"\u25B2":"\u25BC") : "";
+  });
+}
 function render(){
+  updateArrows();
   const reg=document.getElementById('region').value;
   const book=document.getElementById('book').value;
   const readyOnly=document.getElementById('readyonly').checked;
   let rows=RESULTS.filter(r=>(reg==='all'||r.region===reg)&&(book==='all'||r.book===book)&&(!readyOnly||r.status==='LONG-READY'));
+  rows=sortRows(rows);
   const tb=document.getElementById('rows');
   if(!rows.length){tb.innerHTML='<tr><td colspan="9" class="empty">No names match the current filters.</td></tr>';return;}
   const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -293,6 +323,12 @@ function exportJson(){
 document.getElementById('run').addEventListener('click',run);
 document.getElementById('export').addEventListener('click',exportJson);
 ['region','book','readyonly'].forEach(id=>document.getElementById(id).addEventListener('change',()=>{if(RESULTS.length)render();}));
+document.querySelectorAll('th.sortable').forEach(th=>th.addEventListener('click',()=>{
+  const k=th.dataset.sort;
+  if(sortState.key===k) sortState.dir=sortState.dir==='asc'?'desc':'asc';
+  else sortState={key:k,dir:defaultDir[k]||'asc'};
+  updateArrows(); if(RESULTS.length) render();
+}));
 </script>
 </body>
 </html>
