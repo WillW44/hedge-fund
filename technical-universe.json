@@ -1,0 +1,2442 @@
+ 
+
+ {
+ "_note": "book field...'book'=your 43 position/short watchlist, 'universe'=broad consumer coverage screen. Region picks RS benchmark.",
+ "benchmarks": {
+  "US": "SPY.US",
+  "EU": "EXSA.XETRA"
+ },
+ "tickers": [
+  {
+   "ticker": "AERO.SW",
+   "name": "Montana Aerospace",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "EGL.LS",
+   "name": "Mota-Engil",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "MTLN.LSE",
+   "name": "Metlen Energy & Metals",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "BATS.LSE",
+   "name": "British American Tobacco",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "RTO.LSE",
+   "name": "Rentokil Initial",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "GAW.LSE",
+   "name": "Games Workshop",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "FEVR.LSE",
+   "name": "Fevertree Drinks",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "PUM.XETRA",
+   "name": "Puma",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "NA9.XETRA",
+   "name": "Nagarro",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "FME.XETRA",
+   "name": "Fresenius Medical Care",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "OBCK.XETRA",
+   "name": "Ottobock",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "AVOL.SW",
+   "name": "Avolta",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "CMBN.SW",
+   "name": "Cembra Money Bank",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "SIGN.SW",
+   "name": "SIG Group",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "SFZN.SW",
+   "name": "Siegfried Holding",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "MEL.MC",
+   "name": "Melia Hotels",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "VU.PA",
+   "name": "VusionGroup",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "ALHG.PA",
+   "name": "Louis Hachette Group",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "LTMC.MI",
+   "name": "Lottomatica",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "AD.AS",
+   "name": "Ahold Delhaize",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "THEON.AS",
+   "name": "Theon International",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "ESSITY-B.ST",
+   "name": "Essity B",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "LIFCO-B.ST",
+   "name": "Lifco B",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "SCA-B.ST",
+   "name": "SCA B",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "TKO.US",
+   "name": "TKO Group",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "TTWO.US",
+   "name": "Take-Two Interactive",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "HLF.US",
+   "name": "Herbalife",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "PFGC.US",
+   "name": "Performance Food Group",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "SFM.US",
+   "name": "Sprouts Farmers Market",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "FWONK.US",
+   "name": "Liberty Formula One",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "ARMK.US",
+   "name": "Aramark",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "AN.US",
+   "name": "AutoNation",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "ACI.US",
+   "name": "Albertsons",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "STZ.US",
+   "name": "Constellation Brands",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "CL.US",
+   "name": "Colgate-Palmolive",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "NYT.US",
+   "name": "New York Times",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "SCI.US",
+   "name": "Service Corp Intl",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "GIS.US",
+   "name": "General Mills",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "BROS.US",
+   "name": "Dutch Bros",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "FLO.US",
+   "name": "Flowers Foods",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "CPRI.US",
+   "name": "Capri Holdings",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "KYIV.US",
+   "name": "Kyivstar Group",
+   "region": "US",
+   "book": "book"
+  },
+  {
+   "ticker": "CSG.AS",
+   "name": "CSG CONFIRM",
+   "region": "EU",
+   "book": "book"
+  },
+  {
+   "ticker": "CDI.PA",
+   "name": "Christian Dior Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SFER.MI",
+   "name": "Salvatore Ferragamo Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BC.MI",
+   "name": "Brunello Cucinelli Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BOSS.XETRA",
+   "name": "Hugo Boss Ag -Ord",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BRBY.LSE",
+   "name": "Burberry Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "UHR.SW",
+   "name": "Swatch Group Ag/The-Br",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PNDORA.CO",
+   "name": "Pandora A/S",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "MONC.MI",
+   "name": "Moncler Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "KER.PA",
+   "name": "Kering",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ADS.XETRA",
+   "name": "Adidas Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CFR.SW",
+   "name": "Cie Financiere Richemo-A Reg",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RMS.PA",
+   "name": "Hermes International",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "MC.PA",
+   "name": "Lvmh Moet Hennessy Louis Vui",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RACE.MI",
+   "name": "Ferrari",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "THG.LSE",
+   "name": "Thg Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BME.LSE",
+   "name": "B&M European Value Retail Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "NXT.LSE",
+   "name": "Next Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PRX.AS",
+   "name": "Prosus Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CEC.XETRA",
+   "name": "Ceconomy Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "FIE.XETRA",
+   "name": "Fielmann Group Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CURY.LSE",
+   "name": "Currys Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "FRAS.LSE",
+   "name": "Frasers Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DOU.XETRA",
+   "name": "Douglas Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "WOSG.LSE",
+   "name": "Watches Of Switzerland Group",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PETS.LSE",
+   "name": "Pets At Home Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "AG1.XETRA",
+   "name": "Auto1 Group Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SMWH.LSE",
+   "name": "Wh Smith Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DNLM.LSE",
+   "name": "Dunelm Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BELA.AT",
+   "name": "Jumbo Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "KGF.LSE",
+   "name": "Kingfisher Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "JD.LSE",
+   "name": "Jd Sports Fashion Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ZAL.XETRA",
+   "name": "Zalando Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HM-B.ST",
+   "name": "Hennes & Mauritz Ab-B Shs",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ITX.MC",
+   "name": "Industria De Diseno Textil",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ROO.LSE",
+   "name": "Deliveroo Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "GRG.LSE",
+   "name": "Greggs Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "OPAP.AT",
+   "name": "Opap Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CCL.LSE",
+   "name": "Carnival Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ENT.LSE",
+   "name": "Entain Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DHER.XETRA",
+   "name": "Delivery Hero Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TKWY.AS",
+   "name": "Just Eat Takeaway",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "FLTR.LSE",
+   "name": "Flutter Entertainment Plc-Di",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SL.MI",
+   "name": "Sanlorenzo Spa/Ameglia",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TGYM.MI",
+   "name": "Technogym Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "MIPS.ST",
+   "name": "Mips Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HEIO.AS",
+   "name": "Heineken Holding Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RCO.PA",
+   "name": "Remy Cointreau",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CCH.LSE",
+   "name": "Coca-Cola Hbc Ag-Di",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CPR.MI",
+   "name": "Davide Campari-Milano Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CARL-B.CO",
+   "name": "Carlsberg As-B",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HEIA.AS",
+   "name": "Heineken Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RI.PA",
+   "name": "Pernod Ricard Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ABI.BR",
+   "name": "Anheuser-Busch Inbev Sa/Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DGE.LSE",
+   "name": "Diageo Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "OCDO.LSE",
+   "name": "Ocado Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SBRY.LSE",
+   "name": "Sainsbury (J) Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HFG.XETRA",
+   "name": "Hellofresh Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "JMT.LS",
+   "name": "Jeronimo Martins",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "MKS.LSE",
+   "name": "Marks & Spencer Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CA.PA",
+   "name": "Carrefour Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TSCO.LSE",
+   "name": "Tesco Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ARYN.SW",
+   "name": "Aryzta Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "JDEP.AS",
+   "name": "Jde Peet'S Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "LOTB.BR",
+   "name": "Lotus Bakeries",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "AAK.ST",
+   "name": "Aak Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TATE.LSE",
+   "name": "Tate & Lyle Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SALM.OL",
+   "name": "Salmar Asa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "GLB.IR",
+   "name": "Glanbia Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "LISN.SW",
+   "name": "Chocoladefabriken Lindt-Reg",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ORK.OL",
+   "name": "Orkla Asa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BARN.SW",
+   "name": "Barry Callebaut Ag-Reg",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "MOWI.OL",
+   "name": "Mowi Asa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ABF.LSE",
+   "name": "Associated British Foods Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "KYGA.IR",
+   "name": "Kerry Group Plc-A",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BN.PA",
+   "name": "Danone",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "NESN.SW",
+   "name": "Nestle Sa-Reg",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HEN3.XETRA",
+   "name": "Henkel Ag & Co Kgaa Vor-Pref",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RKT.LSE",
+   "name": "Reckitt Benckiser Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PUIG.MC",
+   "name": "Puig Brands Sa-B",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BEI.XETRA",
+   "name": "Beiersdorf Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HLN.LSE",
+   "name": "Haleon Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "OR.PA",
+   "name": "L'Oreal",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ULVR.LSE",
+   "name": "Unilever Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "STG.CO",
+   "name": "Scandinavian Tobacco Group A",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "IMB.LSE",
+   "name": "Imperial Brands Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "UBI.PA",
+   "name": "Ubisoft Entertainment",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "EVD.XETRA",
+   "name": "Cts Eventim Ag & Co Kgaa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "EMBRACB.ST",
+   "name": "Embracer Group Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "UMG.AS",
+   "name": "Universal Music Group Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BCG.LSE",
+   "name": "Baltic Classifieds Group",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TRST.LSE",
+   "name": "Trustpilot Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HEM.ST",
+   "name": "Hemnet Group Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "G24.XETRA",
+   "name": "Scout24 Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "AUTO.LSE",
+   "name": "Auto Trader Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RMV.LSE",
+   "name": "Rightmove Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SCHA.OL",
+   "name": "Schibsted Asa-Cl A",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DDS.US",
+   "name": "Dillards Inc-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "JWN.US",
+   "name": "Nordstrom Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DOL.TO",
+   "name": "Dollarama Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "OLLI.US",
+   "name": "Ollie'S Bargain Outlet Holdi",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "M.US",
+   "name": "Macy'S Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "KSS.US",
+   "name": "Kohls Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CPNG.US",
+   "name": "Coupang Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "EBAY.US",
+   "name": "Ebay Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SCVL.US",
+   "name": "Shoe Carnival Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SAH.US",
+   "name": "Sonic Automotive Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ATZ.TO",
+   "name": "Aritzia Inc-Subordinate Voti",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BKE.US",
+   "name": "Buckle Inc/The",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GES.US",
+   "name": "Guess? Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SBH.US",
+   "name": "Sally Beauty Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WRBY.US",
+   "name": "Warby Parker Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SIG.US",
+   "name": "Signet Jewelers Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VSCO.US",
+   "name": "Victoria'S Secret & Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ASO.US",
+   "name": "Academy Sports & Outdoors In",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "URBN.US",
+   "name": "Urban Outfitters Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BOOT.US",
+   "name": "Boot Barn Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FL.US",
+   "name": "Foot Locker Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AEO.US",
+   "name": "American Eagle Outfitters",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AAP.US",
+   "name": "Advance Auto Parts Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "KMX.US",
+   "name": "Carmax Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BBWI.US",
+   "name": "Bath & Body Works Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FIVE.US",
+   "name": "Five Below",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RH.US",
+   "name": "Rh",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GAP.US",
+   "name": "Gap Inc/The",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FND.US",
+   "name": "Floor & Decor Holdings Inc-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DKS.US",
+   "name": "Dick'S Sporting Goods Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BURL.US",
+   "name": "Burlington Stores Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TSCO.US",
+   "name": "Tractor Supply Company",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WSM.US",
+   "name": "Williams-Sonoma Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ANF.US",
+   "name": "Abercrombie & Fitch Co-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BBY.US",
+   "name": "Best Buy Co Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ROST.US",
+   "name": "Ross Stores Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AZO.US",
+   "name": "Autozone Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ORLY.US",
+   "name": "O'Reilly Automotive Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ULTA.US",
+   "name": "Ulta Beauty Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LOW.US",
+   "name": "Lowe'S Cos Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TJX.US",
+   "name": "Tjx Companies Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HD.US",
+   "name": "Home Depot Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GIII.US",
+   "name": "G-Iii Apparel Group Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WWW.US",
+   "name": "Wolverine World Wide Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AS.US",
+   "name": "Amer Sports Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "OXM.US",
+   "name": "Oxford Industries Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FIGS.US",
+   "name": "Figs Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SHOO.US",
+   "name": "Steven Madden Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GIL.TO",
+   "name": "Gildan Activewear Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "COLM.US",
+   "name": "Columbia Sportswear Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HBI.US",
+   "name": "Hanesbrands Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BIRK.US",
+   "name": "Birkenstock Holding Plc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PVH.US",
+   "name": "Pvh Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CRI.US",
+   "name": "Carter'S Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "UAA.US",
+   "name": "Under Armour Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TPR.US",
+   "name": "Tapestry Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SKX.US",
+   "name": "Skechers Usa Inc-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VFC.US",
+   "name": "Vf Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RL.US",
+   "name": "Ralph Lauren Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CROX.US",
+   "name": "Crocs Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ONON.US",
+   "name": "On Holding Ag-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DECK.US",
+   "name": "Deckers Outdoor Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LULU.US",
+   "name": "Lululemon Athletica Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NKE.US",
+   "name": "Nike Inc -Cl B",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ARCO.US",
+   "name": "Arcos Dorados Holdings Inc-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PZZA.US",
+   "name": "Papa John'S Intl Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WEN.US",
+   "name": "Wendy'S Co/The",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "QSR.TO",
+   "name": "Restaurant Brands Intern",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "YUMC.US",
+   "name": "Yum China Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SHAK.US",
+   "name": "Shake Shack Inc - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TXRH.US",
+   "name": "Texas Roadhouse Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "EAT.US",
+   "name": "Brinker International Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WING.US",
+   "name": "Wingstop Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DRI.US",
+   "name": "Darden Restaurants Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "YUM.US",
+   "name": "Yum! Brands Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DPZ.US",
+   "name": "Domino'S Pizza Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DKNG.US",
+   "name": "Draftkings Inc-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CAVA.US",
+   "name": "Cava Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MCD.US",
+   "name": "Mcdonald'S Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CMG.US",
+   "name": "Chipotle Mexican Grill Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SBUX.US",
+   "name": "Starbucks Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MANU.US",
+   "name": "Manchester United Plc-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WMG.US",
+   "name": "Warner Music Group Corp-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "EDR.US",
+   "name": "Endeavor Group Hold-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "EA.US",
+   "name": "Electronic Arts Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MAB.LSE",
+   "name": "Mitchells & Butlers Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DHG.IR",
+   "name": "Dalata Hotel Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "JDW.LSE",
+   "name": "Wetherspoon (J.D.) Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "KINDSDB.ST",
+   "name": "Kindred Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TRN.LSE",
+   "name": "Trainline Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SHOT.ST",
+   "name": "Scandic Hotels Group Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BETSB.ST",
+   "name": "Betsson Ab-B",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BFIT.AS",
+   "name": "Basic-Fit Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PTEC.LSE",
+   "name": "Playtech Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DOM.LSE",
+   "name": "Domino'S Pizza Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "FDJ.PA",
+   "name": "La Francaise Des Jeux Saem",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "WTB.LSE",
+   "name": "Whitbread Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TUI1.XETRA",
+   "name": "Tui Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "IHG.LSE",
+   "name": "Intercontinental Hotels Grou",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "AC.PA",
+   "name": "Accor Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "EVO.ST",
+   "name": "Evolution Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "THULE.ST",
+   "name": "Thule Group Ab/The",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RBREW.CO",
+   "name": "Royal Unibrew",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CO.PA",
+   "name": "Casino Guichard Perrachon",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "B4B.XETRA",
+   "name": "Metro Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "COLR.BR",
+   "name": "Colruyt Group N.V",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "AXFO.ST",
+   "name": "Axfood Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "RDC.XETRA",
+   "name": "Redcare Pharmacy Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BAKK.LSE",
+   "name": "Bakkavor Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "EBRO.MC",
+   "name": "Ebro Foods Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SZU.XETRA",
+   "name": "Suedzucker Ag",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PFD.LSE",
+   "name": "Premier Foods Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "LSG.OL",
+   "name": "Leroy Seafood Group Asa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HFG.LSE",
+   "name": "Hilton Food Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BAKKA.OL",
+   "name": "Bakkafrost P/F",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PDX.ST",
+   "name": "Paradox Interactive Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "JUVE.MI",
+   "name": "Juventus Football Club Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PSM.XETRA",
+   "name": "Prosiebensat.1 Media Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DEC.PA",
+   "name": "Jcdecaux Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SAX.XETRA",
+   "name": "Stroeer Se & Co Kgaa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "FUTR.LSE",
+   "name": "Future Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ITV.LSE",
+   "name": "Itv Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "WPP.LSE",
+   "name": "Wpp Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "INF.LSE",
+   "name": "Informa Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "VIV.PA",
+   "name": "Vivendi Se",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PUB.PA",
+   "name": "Publicis Groupe",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BB.PA",
+   "name": "Societe Bic Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "HWDN.LSE",
+   "name": "Howden Joinery Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BNZL.LSE",
+   "name": "Bunzl Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BTA.LSE",
+   "name": "Bt Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "NOS.LS",
+   "name": "Nos Sgps",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "KPN.AS",
+   "name": "Koninklijke Kpn Nv",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PSON.LSE",
+   "name": "Pearson Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DOM.ST",
+   "name": "Dometic Group Ab",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "BRE.MI",
+   "name": "Brembo N.V.",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "TYRES.HE",
+   "name": "Nokian Renkaat Oyj",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "PIRC.MI",
+   "name": "Pirelli & C Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ML.PA",
+   "name": "Michelin (Cgde)",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "INCH.LSE",
+   "name": "Inchcape Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DIE.BR",
+   "name": "D'Ieteren Group",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "CRN.LSE",
+   "name": "Cairn Homes Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "DLG.MI",
+   "name": "De'Longhi Spa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SK.PA",
+   "name": "Seb Sa",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "VTY.LSE",
+   "name": "Vistry Group Plc",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "ELUXB.ST",
+   "name": "Electrolux Ab-B",
+   "region": "EU",
+   "book": "universe"
+  },
+  {
+   "ticker": "SVV.US",
+   "name": "Savers Value Village Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VIPS.US",
+   "name": "Vipshop Holdings Ltd - Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ETSY.US",
+   "name": "Etsy Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PDD.US",
+   "name": "Pdd Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AMZN.US",
+   "name": "Amazon.Com Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CWH.US",
+   "name": "Camping World Holdings Inc-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RVLV.US",
+   "name": "Revolve Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PAG.US",
+   "name": "Penske Automotive Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ABG.US",
+   "name": "Asbury Automotive Group",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GPI.US",
+   "name": "Group 1 Automotive Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GME.US",
+   "name": "Gamestop Corp-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BOWL.US",
+   "name": "Bowlero Corp - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PLYA.US",
+   "name": "Playa Hotels & Resorts Nv",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MCRI.US",
+   "name": "Monarch Casino & Resort Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DNUT.US",
+   "name": "Krispy Kreme Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MLCO.US",
+   "name": "Melco Resorts & Entert-Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PLAY.US",
+   "name": "Dave & Buster'S Entertainmen",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "IGT.US",
+   "name": "International Game Technolog",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BLMN.US",
+   "name": "Bloomin' Brands Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RRR.US",
+   "name": "Red Rock Resorts Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LKNCY.US",
+   "name": "Luckin Coffee Inc - Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CAKE.US",
+   "name": "Cheesecake Factory Inc/The",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CHDN.US",
+   "name": "Churchill Downs Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LTH.US",
+   "name": "Life Time Group Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CHH.US",
+   "name": "Choice Hotels Intl Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BYD.US",
+   "name": "Boyd Gaming Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PRKS.US",
+   "name": "United Parks & Resorts Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WH.US",
+   "name": "Wyndham Hotels & Resorts Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MTN.US",
+   "name": "Vail Resorts Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PENN.US",
+   "name": "Penn Entertainment Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FUN.US",
+   "name": "Six Flags Entertainment Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PLNT.US",
+   "name": "Planet Fitness Inc - Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TCOM.US",
+   "name": "Trip.Com Group Ltd-Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MGM.US",
+   "name": "Mgm Resorts International",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WYNN.US",
+   "name": "Wynn Resorts Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CZR.US",
+   "name": "Caesars Entertainment Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NCLH.US",
+   "name": "Norwegian Cruise Line Holdin",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LVS.US",
+   "name": "Las Vegas Sands Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "EXPE.US",
+   "name": "Expedia Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HLT.US",
+   "name": "Hilton Worldwide Holdings In",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MAR.US",
+   "name": "Marriott International -Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CCL.US",
+   "name": "Carnival Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RCL.US",
+   "name": "Royal Caribbean Cruises Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DASH.US",
+   "name": "Doordash Inc - A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ABNB.US",
+   "name": "Airbnb Inc-Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BKNG.US",
+   "name": "Booking Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LEG.US",
+   "name": "Leggett & Platt Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LZB.US",
+   "name": "La-Z-Boy Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CVCO.US",
+   "name": "Cavco Industries Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HELE.US",
+   "name": "Helen Of Troy Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NWL.US",
+   "name": "Newell Brands Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TPX.US",
+   "name": "Tempur Sealy International I",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WHR.US",
+   "name": "Whirlpool Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MHK.US",
+   "name": "Mohawk Industries Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SN.US",
+   "name": "Sharkninja Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NVR.US",
+   "name": "Nvr Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GOLF.US",
+   "name": "Acushnet Holdings Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VSTO.US",
+   "name": "Vista Outdoor Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MODG.US",
+   "name": "Topgolf Callaway Brands Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MAT.US",
+   "name": "Mattel Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BC.US",
+   "name": "Brunswick Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "YETI.US",
+   "name": "Yeti Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PII.US",
+   "name": "Polaris Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PTON.US",
+   "name": "Peloton Interactive Inc-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HAS.US",
+   "name": "Hasbro Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LGFA.US",
+   "name": "Lions Gate Entertainment-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MSGE.US",
+   "name": "Madison Square Garden Entert",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MSGS.US",
+   "name": "Madison Square Garden Sports",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SPHR.US",
+   "name": "Sphere Entertainment Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "AMC.US",
+   "name": "Amc Entertainment Hlds-Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CNK.US",
+   "name": "Cinemark Holdings Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LYV.US",
+   "name": "Live Nation Entertainment In",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SE.US",
+   "name": "Sea Ltd-Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SPOT.US",
+   "name": "Spotify Technology Sa",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "DIS.US",
+   "name": "Walt Disney Co/The",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NFLX.US",
+   "name": "Netflix Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SSTK.US",
+   "name": "Shutterstock Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "IAC.US",
+   "name": "Iac Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TRIP.US",
+   "name": "Tripadvisor Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "BMBL.US",
+   "name": "Bumble Inc-A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MTCH.US",
+   "name": "Match Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SNAP.US",
+   "name": "Snap Inc - A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PINS.US",
+   "name": "Pinterest Inc- Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CRTO.US",
+   "name": "Criteo Sa-Spon Adr",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TTD.US",
+   "name": "Trade Desk Inc/The -Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GT.US",
+   "name": "Goodyear Tire & Rubber Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WGO.US",
+   "name": "Winnebago Industries",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "THO.US",
+   "name": "Thor Industries Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HOG.US",
+   "name": "Harley-Davidson Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "POOL.US",
+   "name": "Pool Corp",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "OSW.US",
+   "name": "Onespaworld Holdings Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "UPBD.US",
+   "name": "Upbound Group Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "ARHS.US",
+   "name": "Arhaus Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CAL.US",
+   "name": "Caleres Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VVV.US",
+   "name": "Valvoline Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LAD.US",
+   "name": "Lithia Motors Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CHWY.US",
+   "name": "Chewy Inc - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "W.US",
+   "name": "Wayfair Inc- Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CVNA.US",
+   "name": "Carvana Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LEVI.US",
+   "name": "Levi Strauss & Co- Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "KTB.US",
+   "name": "Kontoor Brands Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RSI.US",
+   "name": "Rush Street Interactive Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GENI.US",
+   "name": "Genius Sports Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "TNL.US",
+   "name": "Travel + Leisure Co",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VAC.US",
+   "name": "Marriott Vacations World",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "HGV.US",
+   "name": "Hilton Grand Vacations Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "VIK.US",
+   "name": "Viking Holdings Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "MMYT.US",
+   "name": "Makemytrip Ltd",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "LNW.US",
+   "name": "Light & Wonder Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "H.US",
+   "name": "Hyatt Hotels Corp - Cl A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "SG.US",
+   "name": "Sweetgreen Inc - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "WBD.US",
+   "name": "Warner Bros Discovery Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "RBLX.US",
+   "name": "Roblox Corp -Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "CARG.US",
+   "name": "Cargurus Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "YELP.US",
+   "name": "Yelp Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "NWSA.US",
+   "name": "News Corp - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "FOXA.US",
+   "name": "Fox Corp - Class A",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "PARA.US",
+   "name": "Paramount Global-Class B",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "IPG.US",
+   "name": "Interpublic Group Of Cos Inc",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "OMC.US",
+   "name": "Omnicom Group",
+   "region": "US",
+   "book": "universe"
+  },
+  {
+   "ticker": "GPC.US",
+   "name": "Genuine Parts Co",
+   "region": "US",
+   "book": "universe"
+ }
+ ]
+}
+
